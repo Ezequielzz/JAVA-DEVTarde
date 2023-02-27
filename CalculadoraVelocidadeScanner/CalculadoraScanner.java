@@ -17,5 +17,5 @@ public class CalculadoraScanner {
         System.out.println("A Velocidade Media foi de "
                 + VelocidadeMedia + " km/h");
     }
-
+ 
 }
