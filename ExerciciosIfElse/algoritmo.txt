@@ -1,0 +1,34 @@
+Exercicio 1 - Algoritmo
+
+1º passo - Ler a primeira variavel (valor1);
+2º passo - Ler a segunda variavel (valor2);
+3º passo - se valor1>valor2 - então {
+    Escreva (o valor1 é maior);
+} senão{
+    Escreva (o valor2 é maior);
+}
+
+Exercicio 2 - Algoritmo
+
+1º passo - Ler a primeira variavel (anoDeNascimento)
+2º passo - idade = anoDeNascimento - 2023
+3º passo - se idade>=16 - então {
+    Escreva (voce pode votar);
+} senão {
+    Escreva (voce não pode votar)
+}
+
+Exercicio 3 - Algoritmo
+
+1º passo - Ler a variavel (senha)
+2º passo - se senha = 1234 - então {
+    Escreva (ACESSO PERMITIDO);
+} senão {
+    Escreva (ACESSO NEGADO)
+}
+
+Exercicio 4 - Algoritmo
+
+1° passo - Ler a variavel (maca)
+2º passo - caso maca<12 utilize double para armazenar a conta "maca*0,30" 
+3º passo - caso maca>=12 utilize double para armazenar a conta "maca*0,25"
