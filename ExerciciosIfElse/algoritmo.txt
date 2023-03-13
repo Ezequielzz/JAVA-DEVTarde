@@ -32,3 +32,15 @@ Exercicio 4 - Algoritmo
 1° passo - Ler a variavel (maca)
 2º passo - caso maca<12 utilize double para armazenar a conta "maca*0,30" 
 3º passo - caso maca>=12 utilize double para armazenar a conta "maca*0,25"
+
+Exercicio 5 - Algoritmo
+
+1º passo - Ler a 1ª variavel
+2º passo - Ler a 2ª variavel
+3º passo - Ler a 3ª variavel
+
+Exercicio 6 - Algoritmo
+
+1 passo - Ler o sexo da pessoa (Feminino ou Masculino) 
+2 passo - ler a 2ª variavel (altura)
+3 passo - Realizar o calculo
