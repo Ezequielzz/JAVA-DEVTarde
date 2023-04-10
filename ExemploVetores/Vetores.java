@@ -198,22 +198,22 @@ public class Vetores {
             System.out.println("O Valor da 15ª Posição Índice 14 é "+vetorA[14]);
 
         int vetorB[] = new int [15];
-        System.out.println("Preencha o Vetor de 8 posições");
-            vetorB[0]= vetorA[0] vetorA[0];
-            vetorB[1]= vetorA[1]  vetorA[1];
-            vetorB[2]= vetorA[2]  vetorA[2];
-            vetorB[3]= vetorA[3]  vetorA[3];
-            vetorB[4]= vetorA[4]  vetorA[4];
-            vetorB[5]= vetorA[5]  vetorA[5];
-            vetorB[6]= vetorA[6]  vetorA[6];
-            vetorB[7]= vetorA[7]  vetorA[7];
-            vetorB[8]= vetorA[8]  vetorA[8];
-            vetorB[9]= vetorA[9]  vetorA[9];
-            vetorB[10]= vetorA[10]  vetorA[10];
-            vetorB[11]= vetorA[11]  vetorA[11];
-            vetorB[12]= vetorA[12]  vetorA[12];
-            vetorB[13]= vetorA[13]  vetorA[13];
-            vetorB[14]= vetorA[14]  vetorA[14];
+        System.out.println("Preencha o Vetor de 15 posições");
+            vetorB[0]= vetorA[0] * vetorA[0];
+            vetorB[1]= vetorA[1] * vetorA[1];
+            vetorB[2]= vetorA[2] * vetorA[2];
+            vetorB[3]= vetorA[3] * vetorA[3];
+            vetorB[4]= vetorA[4] * vetorA[4];
+            vetorB[5]= vetorA[5] * vetorA[5];
+            vetorB[6]= vetorA[6] * vetorA[6];
+            vetorB[7]= vetorA[7] * vetorA[7];
+            vetorB[8]= vetorA[8] * vetorA[8];
+            vetorB[9]= vetorA[9] * vetorA[9];
+            vetorB[10]= vetorA[10] * vetorA[10];
+            vetorB[11]= vetorA[11] * vetorA[11];
+            vetorB[12]= vetorA[12] * vetorA[12];
+            vetorB[13]= vetorA[13] * vetorA[13];
+            vetorB[14]= vetorA[14] * vetorA[14];
         }
     
 }
