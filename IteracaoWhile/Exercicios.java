@@ -46,13 +46,13 @@ public class Exercicios {
     int i=0;
     while(i < 15){
         vetorB[i]=Math.sqrt(vetorA[i]);
-        System.out.println("O vetor B["+i+"]="=vetorB[i]);
+        System.out.println("O vetor B["+i+"]="+vetorB[i]);
         i++;
     }
    }
 
    public void EduardoSindico5() {
-    int vetorA[]=new int[]
+    
 
    }
 
