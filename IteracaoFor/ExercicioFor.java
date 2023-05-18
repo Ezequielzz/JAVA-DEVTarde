@@ -131,6 +131,7 @@ public class ExercicioFor {
     }
 
     public void extra1() {
+        Random rd = new Random();
         int[][] vetor = new int[4][4];
 
         // preenche a matriz com o resultado da multiplicação
@@ -143,21 +144,57 @@ public class ExercicioFor {
         // imprime a matriz na tela
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                vetor[i][j] = Random.nextInt(0, 10);
+                vetor[i][j] = rd.nextInt(0, 10);
             }
             System.out.println();
         }
     }
+
     public void extra2() {
+        Random rd = new Random();
+
         int[][] vetor = new int[4][4];
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                System.out.println(vetor[i][j] + " ");
-            System.out.println();
+                vetor[i][j] = rd.nextInt(0, 10);
             }
         }
 
+    }
 
+    public void extra3() {
+        int[][] vetor = new int[5][5];
+
+        System.out.println("Digite um valor de 0 a 9;");
+                int valorAleatorio = sc.nextInt();
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+
+                vetor[i][j] = rd.nextInt(0, 10);
+                if (valorAleatorio == 0 || valorAleatorio == 1 || valorAleatorio == 2 || valorAleatorio == 3 
+                || valorAleatorio == 4 || valorAleatorio == 5 || valorAleatorio == 6 ||
+                 valorAleatorio == 7 || valorAleatorio == 8 || valorAleatorio == 9) {
+                    System.out.println("Valor encontrado = " + valorAleatorio);
+                 } else {System.out.println("Valor não encontrado");
+                }
+                
+                
+            }
+        }
+    }
+    }
+
+    public void extra4() {
+        Random rd = new Random();
+
+        int[][] vetor = new int[10][10];
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                vetor[i][j];
+            }
+        }
     }
 }
