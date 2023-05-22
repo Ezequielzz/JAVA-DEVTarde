@@ -1,9 +1,11 @@
 package IteracaoFor;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class ExercicioFor {
     Scanner sc = new Scanner(System.in);
+    Random rd = new Random();
 
     public void exercicio1() {
         int vetor[] = new int[5];
@@ -71,7 +73,6 @@ public class ExercicioFor {
         for (int i = 0; i < palavra.length(); i++) {
             char c = palavra.charAt(i);
             if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-
             } else {
                 cont++;
                 System.out.println(c + " é consoante");
@@ -115,16 +116,35 @@ public class ExercicioFor {
         int vetorPar[] = new int[contPar];
         int vetorImpar[] = new int[contImpar];
         // distribuindo os valores nos vetores
-        contPar=0;
-        contImpar=0;
+        contPar = 0;
+        contImpar = 0;
         for (int i = 0; i < vetorNumeros.length; i++) {
-            if (vetorNumeros[i]%2==0) {
-                vetorPar[contPar]=vetorNumeros[i];
+            if (vetorNumeros[i] % 2 == 0) {
+                vetorPar[contPar] = vetorNumeros[i];
                 contPar++;
             } else {
-                vetorImpar[contImpar]=vetorNumeros[i];
+                vetorImpar[contImpar] = vetorNumeros[i];
                 contImpar++;
             }
+        }
+    }
+
+    public void extra1() {
+        Random rd = new Random();
+        int[][] vetor = new int[4][4];
+
+        // preenche a matriz com o resultado da multiplicação
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                vetor[i][j] = (i + 1) * (j + 1);
+            }
+        }
+        // imprime a matriz na tela
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                vetor[i][j] = rd.nextInt(0, 10);
+            }
+            System.out.println();
         }
     }
 }
