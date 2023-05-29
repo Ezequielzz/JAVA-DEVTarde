@@ -1,9 +1,10 @@
 package POOIntroducao;
 
-public class Pessoas {
+public abstract class Pessoas {
     // atributos
     protected String nome;
     protected String endereco;
+    protected String rg;
 
     public String getNome() {
         return nome;

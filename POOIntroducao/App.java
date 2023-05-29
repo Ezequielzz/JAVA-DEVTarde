@@ -11,6 +11,7 @@ public class App {
         RegistraAluno ana = new RegistraAluno();
         RegistraAluno beto = new RegistraAluno();
         RegistraAluno carlos = new RegistraAluno();
+        Alunos aluno1 = new Alunos();
 
         // altera as informações com o set
         ana.setNome("Ana Machado");

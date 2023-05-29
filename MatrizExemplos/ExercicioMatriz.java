@@ -65,27 +65,27 @@ public class ExercicioMatriz {
     }
 
     public void extra2() {
-        int nSorteado = 0, nDigitado = 0, cont = 0;
-        nSorteado = rd.nextInt(0, 1000);
+        int nDigitado = 0, cont = 0;
+        int nSorteado = rd.nextInt(1,1000);
 
-        while (nDigitado != nSorteado) {
+        while (nSorteado != nDigitado ) {
             System.out.println("Informe um Valor de 0 a 1000");
             nDigitado = sc.nextInt();
             System.out.println();
             cont++;
 
             if (nDigitado == nSorteado) {
-                System.out.println("///////////////////////////");
+                System.out.println("/////////////////////////////////////");
                 System.out.println();
                 System.out.println("Você Acertou em " + cont + " tentativas");
                 System.out.println();
             } else if (nDigitado > nSorteado) {
-                System.out.println("///////////////////////////");
+                System.out.println("/////////////////////////////////////");
                 System.out.println();
                 System.out.println("o Valor sorteado é menor que " + nDigitado);
                 System.out.println();
             } else {
-                System.out.println("///////////////////////////");
+                System.out.println("/////////////////////////////////////");
                 System.out.println();
                 System.out.println("o Valor sorteado é maior que " + nDigitado);
                 System.out.println();

@@ -139,10 +139,7 @@ public class ExercicioFor {
                 vetor[i][j] = (i + 1) * (j + 1);
             }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 95d69b3cf04190ba5ef98a7a1974c03a456ee8cd
         // imprime a matriz na tela
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -151,8 +148,6 @@ public class ExercicioFor {
             System.out.println();
         }
     }
-<<<<<<< HEAD
-=======
 
     public void extra2() {
         Random rd = new Random();
@@ -188,7 +183,7 @@ public class ExercicioFor {
             }
         }
     }
-    }
+    
 
     public void extra4() {
         Random rd = new Random();
@@ -197,9 +192,8 @@ public class ExercicioFor {
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                vetor[i][j];
+                
             }
         }
     }
->>>>>>> 95d69b3cf04190ba5ef98a7a1974c03a456ee8cd
 }
