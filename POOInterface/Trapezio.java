@@ -1,6 +1,6 @@
 package POOInterface;
 
-public class Trapezio implements FigurasGeometricas{ //
+public class Trapezio implements FigurasGeometricas{ //implementa os metodos da classe FigurasGeometricas
     
     public Trapezio(int baseMaior, int baseMenor, int altura, int lado1, int lado2) {
         this.baseMaior = baseMaior;

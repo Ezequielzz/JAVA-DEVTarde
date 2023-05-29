@@ -1,6 +1,6 @@
 package POOInterface;
 
-public interface FigurasGeometricas { //interface declara parametros para serem utilizados em OUTRAS classes
+public interface FigurasGeometricas { //contrato dizendo que qualquer classe que a implementar vai ter que escrever os métodos definidos.
 
     public String getNomeFigura();
 
