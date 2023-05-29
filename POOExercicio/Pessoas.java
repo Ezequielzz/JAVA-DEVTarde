@@ -5,14 +5,7 @@ import java.util.Scanner;
 public class Pessoas {
 
     
-    public Pessoas(String nome, double altura, int dia, int mes, int ano, int idade) {
-        this.nome = nome;
-        this.altura = altura;
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.idade = idade;
-    }
+    
 
     Scanner sc = new Scanner(System.in);
     private String nome;
