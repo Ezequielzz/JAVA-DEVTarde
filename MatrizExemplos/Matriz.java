@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Matriz {
     Scanner sc = new Scanner(System.in);
     Random rd = new Random();
-    private int j;
 
     public void exemplo1() {
         // exemplo de criação/preenchimento/impressão de matriz

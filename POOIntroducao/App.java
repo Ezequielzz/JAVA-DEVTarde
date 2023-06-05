@@ -61,7 +61,7 @@ public class App {
                 + RegistraAluno.getQuantidadeAlunos());
                 System.out.println("======================================");
 
-                Alunos aluno1 = new Alunos();
+                aluno1 = new Alunos();
                 aluno1.setNome("Rogério");
                 System.out.println(aluno1.getNome());
     }

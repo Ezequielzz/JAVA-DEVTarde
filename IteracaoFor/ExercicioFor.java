@@ -186,7 +186,6 @@ public class ExercicioFor {
     
 
     public void extra4() {
-        Random rd = new Random();
 
         int[][] vetor = new int[10][10];
 
