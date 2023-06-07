@@ -1,7 +1,5 @@
 package POOIntroducao;
 
-import CalculadoraDeDescontos.Main;
-
 /**
  * App
  */
