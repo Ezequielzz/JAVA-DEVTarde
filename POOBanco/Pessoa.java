@@ -1,25 +1,24 @@
 package POOBanco;
 
-public class Banco {
-
-    // atributos
+public class Pessoa {
+    
     public String nome;
-    public String endereco;
+    public int idade;
     public String cpf;
     public String cnpj;
 
-    // getters and setters
+
     public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getEndereco() {
-        return endereco;
+    public int getIdade() {
+        return idade;
     }
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
     public String getCpf() {
         return cpf;
@@ -33,7 +32,5 @@ public class Banco {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-    public void iniciar() {
-        
-    }
+
 }
