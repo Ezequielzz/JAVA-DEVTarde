@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Conta extends Pessoa {
 
+    // Declaração de Atributos
     public double saque = 0;
     public double deposito = 0;
     public double emprestimo = 0;
@@ -12,12 +13,14 @@ public class Conta extends Pessoa {
     public String senha;
     public int acao = 0;
 
+    // Método Criação de Conta
     public void criarConta() {
         JOptionPane.showMessageDialog(null, "Criação de Conta");
             acao = Integer.parseInt(JOptionPane.showInputDialog(null,
                     "Informe Qual o Tipo da Sua Conta\n 1 - Pessoa Física 2 - Pessoa Jurídica"));
 
             switch (acao) {
+                // Conta PF
                 case 1:
                     setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe o Nome da Conta: "));
                     setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe sua Idade: ")));
@@ -32,6 +35,7 @@ public class Conta extends Pessoa {
                     break;
 
                 case 2:
+                    // Conta PJ
                     setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe o Nome da Conta: "));
                     setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe sua Idade: ")));
                     if (getIdade() >= 18) {
@@ -49,6 +53,7 @@ public class Conta extends Pessoa {
             }
     }
 
+    // Método de Saque
     public void saque() {
         JOptionPane.showMessageDialog(null, "Efetue seu Saque");
         saque = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Saque (Limite R$2500): "));
@@ -63,6 +68,7 @@ public class Conta extends Pessoa {
         }
     }
 
+    // Método de Deposito
     public void deposito() {
         JOptionPane.showMessageDialog(null, "Efetue seu Depósito");
         deposito = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Depósito: "));
@@ -77,6 +83,7 @@ public class Conta extends Pessoa {
         }
     }
 
+    // Método de Emprestimo
     public void emprestimo() {
         JOptionPane.showMessageDialog(null, "Efetue seu Emprestimo");
         emprestimo = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Emprestimo (Limite R$5000): "));
@@ -91,6 +98,7 @@ public class Conta extends Pessoa {
         }
     }
 
+    // Getters & Setters
     public double getSaque() {
         return saque;
     }
