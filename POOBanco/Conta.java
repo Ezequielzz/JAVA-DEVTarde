@@ -7,70 +7,69 @@ public class Conta extends Pessoa {
     public double saque = 0;
     public double deposito = 0;
     public double emprestimo = 0;
+    public String tipoConta;
     public double saldo;
-    public static String senha;
+    public String senha;
     public int acao = 0;
-    public int codigo = 0;
 
     public void criarConta() {
         JOptionPane.showMessageDialog(null, "Criação de Conta");
-        setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe sua idade: ")));
+            acao = Integer.parseInt(JOptionPane.showInputDialog(null,
+                    "Informe Qual o Tipo da Sua Conta\n 1 - Pessoa Física 2 - Pessoa Jurídica"));
 
-        if (getIdade() >= 18) {
-            acao = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe Qual o Tipo da Sua Conta\n 1 - Pessoa Física 2 - Pessoa Jurídica"));
+            switch (acao) {
+                case 1:
+                    setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe o Nome da Conta: "));
+                    setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe sua Idade: ")));
+                    if (getIdade() >= 18) {
+                    setCpf(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe Seu CPF: "));
+                    setSenha(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe uma Senha: "));
+                    setTipoConta("Conta PF");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Apenas Maiores de 18 Anos Podem Criar Uma Conta!");
+                        }
 
-                    switch (acao) {
-                        case 1:
-                        setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe o Nome da Conta: "));
-                        setCpf(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe Seu CPF: "));
-                        setSenha(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe uma Senha: "));
-                        codigo++;
-                        JOptionPane.showMessageDialog(null, "Seu Código de Conta é " + codigo);
-                            break;
+                    break;
 
-                        case 2:
-                        setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe o Nome da Conta: "));
-                        setCnpj(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe Seu CNPJ: "));
-                        setSenha(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe uma Senha: "));
-                        codigo++;
-                        JOptionPane.showMessageDialog(null, "Seu Código de Conta é " + codigo);
-                    
-                        default:
-                        JOptionPane.showMessageDialog(null, "Informe uma Ação Válida4");
-                            break;
-                    }
-        } else {
-            JOptionPane.showMessageDialog(null, "Apenas Maiores de 18 Anos Podem Criar Uma Conta!");
+                case 2:
+                    setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe o Nome da Conta: "));
+                    setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe sua Idade: ")));
+                    if (getIdade() >= 18) {
+                    setCnpj(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe Seu CNPJ: "));
+                    setSenha(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe uma Senha: "));
+                    setTipoConta("Conta PJ");
+                     } else {
+                            JOptionPane.showMessageDialog(null, "Apenas Maiores de 18 Anos Podem Criar Uma Conta!");
+                        }
 
-        }
-
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Informe uma Ação Válida.");
+                    break;
+            }
     }
-
 
     public void saque() {
         JOptionPane.showMessageDialog(null, "Efetue seu Saque");
         saque = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Saque (Limite R$2500): "));
-        
-        if (getSaldo() < saque || saque > 2500) {
-            JOptionPane.showMessageDialog(null, "Não Foi Possivel Efetuar o Saque");
 
+        if (saldo < saque || saque > 2500) {
+            JOptionPane.showMessageDialog(null, "Não Foi Possivel Efetuar o Saque.");
 
         } else {
-            getSaldo() = saldo - saque;
-            JOptionPane.showMessageDialog(null, "Saque Efetuado! \n Saldo Atual" + saldo);
+            saldo = saldo - saque;
+            JOptionPane.showMessageDialog(null, "Saque Efetuado! \n Saldo Atual: R$" + saldo);
 
         }
     }
 
-
     public void deposito() {
         JOptionPane.showMessageDialog(null, "Efetue seu Depósito");
         deposito = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Depósito: "));
-        
+
         if (deposito > 0) {
             saldo = saldo + deposito;
-            JOptionPane.showMessageDialog(null, "Depósito Efetuado! \n Saldo Atual " + saldo);
-
+            JOptionPane.showMessageDialog(null, "Depósito Efetuado! \n Saldo Atual: R$" + saldo);
 
         } else {
             JOptionPane.showMessageDialog(null, "Não Foi Possível Efetuar o Depósito.");
@@ -78,23 +77,19 @@ public class Conta extends Pessoa {
         }
     }
 
-
-
     public void emprestimo() {
         JOptionPane.showMessageDialog(null, "Efetue seu Emprestimo");
         emprestimo = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Emprestimo (Limite R$5000): "));
-        
+
         if (emprestimo > 0 && emprestimo < 5000) {
             saldo = saldo + emprestimo;
-            JOptionPane.showMessageDialog(null, "Emprestimo Efetuado! Saldo Atual: " + saldo);
-
+            JOptionPane.showMessageDialog(null, "Emprestimo Efetuado! Saldo Atual: R$" + saldo);
 
         } else {
             JOptionPane.showMessageDialog(null, "Não Foi Possível Efetuar o Emprestimo.");
 
         }
     }
-
 
     public double getSaque() {
         return saque;
@@ -135,5 +130,14 @@ public class Conta extends Pessoa {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getTipoConta() {
+        return tipoConta;
+    }
+
+    public void setTipoConta(String tipoConta) {
+        this.tipoConta = tipoConta;
+    }
+
 
 }

@@ -6,11 +6,11 @@ public class App extends Conta {
     public static void main(String[] args) {
 
         Conta[] conta = new Conta[1];
-        Conta banco1 = new Conta();
+        int contaAtual = 0;
         int acao1 = 0;
-        int cont = 0;
-        boolean naoEncontrei = true;
-        boolean naoEncontrei2 = true;
+        int acao = 0;
+        boolean encontrei = true;
+        boolean encontrei2 = true;
         boolean ligado = true;
 
         while (ligado) {
@@ -28,68 +28,99 @@ public class App extends Conta {
                     break;
 
                 case 2:
-
+                    int cont = 0;
                     String nomeBuscado = JOptionPane.showInputDialog("Digite um Nome Para Buscar");
-                    while (naoEncontrei) {
+                    while (cont < conta.length) {
+                        encontrei = true; // Redefine a variável naoEncontrei como verdadeira
+
                         if (nomeBuscado.equals(conta[cont].getNome())) {
-                            naoEncontrei = false;
-                            JOptionPane.showMessageDialog(null, "Informações da Conta \n Nome: " + conta[cont].getNome()
-                                    + "\n Idade: " + conta[cont].getIdade() + "\n Saldo: " + conta[cont].getSaldo());
+                            encontrei = false;
+                            contaAtual = cont;
 
-                        acao1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe a Ação \n 5 - Depositar"));
-                        } if (acao1==5) {
-                            banco1.deposito();
+                            JOptionPane.showMessageDialog(null, "Informações da Conta \n Nome: " + conta[contaAtual].getNome()
+                                                + "\n Idade: " + conta[contaAtual].getIdade() + "\n Tipo da Conta: "
+                                                + conta[contaAtual].getTipoConta() + "\n Saldo: "
+                                                + conta[contaAtual].getSaldo());
+
+                            acao = Integer
+                                    .parseInt(JOptionPane.showInputDialog(null,
+                                            "Informe a Ação \n 1 - Depositar  2 - Sair"));
+
+                            switch (acao) {
+                                case 1:
+                                    conta[cont].deposito();
+                                    break;
+
+                                case 2:
+                                    ligado = false;
+                                    break;
+
+                                default:
+                                    JOptionPane.showMessageDialog(null, "Informe Uma Ação Válida.");
+                                    break;
+                            }
                         }
-                    }
 
+                        cont++;
+                    }
                     break;
 
                 case 3:
-                   String nomeBuscado1 = JOptionPane.showInputDialog("Digite o Nome da Sua Conta");
-                    while (naoEncontrei2) {
-                        if (nomeBuscado1.equals(conta[cont].getNome())) {
-                            naoEncontrei = false;
+                    cont = 0;
+                    String nomeBuscado2 = JOptionPane.showInputDialog("Digite o Nome da Sua Conta");
+                    while (cont < conta.length) {
+                        encontrei2 = true; // Redefine a variável naoEncontrei2 como verdadeira
+
+                        if (nomeBuscado2.equals(conta[cont].getNome())) {
+                            encontrei2 = false;
+                            contaAtual = cont;
 
                             String senhaDigitada = JOptionPane.showInputDialog(null, "Digite Sua Senha de Acesso");
-                            if (senhaDigitada.equals(conta[cont].getSenha())) {
+                            if (senhaDigitada.equals(conta[contaAtual].getSenha())) {
                                 JOptionPane.showMessageDialog(null,
-                                        "Informações da Conta \n Nome: " + conta[cont].getNome()
-                                                + "\n Idade: " + conta[cont].getIdade() + "\n Saldo: "
-                                                + conta[cont].getSaldo());
+                                        "Informações da Conta \n Nome: " + conta[contaAtual].getNome()
+                                                + "\n Idade: " + conta[contaAtual].getIdade() + "\n Tipo da Conta: "
+                                                + conta[contaAtual].getTipoConta() + "\n Saldo: "
+                                                + conta[contaAtual].getSaldo());
 
                                 acao1 = Integer.parseInt(JOptionPane.showInputDialog(null,
-                                        "Informe a Ação \n 1 - Sacar  2 - Depositar  3 - Emprestimo"));
+                                        "Informe a Ação \n 1 - Sacar  2 - Depositar  3 - Emprestimo  4 - Sair"));
 
                                 switch (acao1) {
                                     case 1:
-                                        banco1.saque();
-
+                                        conta[cont].saque();
                                         break;
 
                                     case 2:
-                                        banco1.deposito();
-
+                                        conta[cont].deposito();
                                         break;
 
                                     case 3:
-                                        banco1.emprestimo();
+                                        conta[cont].emprestimo();
+                                        break;
 
+                                    case 4:
+                                        ligado = false;
                                         break;
 
                                     default:
-                                        JOptionPane.showInputDialog(null, "Informe Uma Ação Válida2");
+                                        JOptionPane.showMessageDialog(null, "Informe Uma Ação Válida.");
                                         break;
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(null, "Senha Inválida");
+                                JOptionPane.showMessageDialog(null, "Senha Inválida.");
                             }
                         }
+
+                        cont++;
                     }
+                    break;
 
                 case 4:
                     ligado = false;
 
                 default:
+                    JOptionPane.showMessageDialog(null, "Informe Uma Ação Válida.");
                     break;
             }
         }
