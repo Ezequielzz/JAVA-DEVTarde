@@ -17,13 +17,13 @@ public class Conta extends Pessoa {
     public void criarConta() {
         JOptionPane.showMessageDialog(null, "Criação de Conta");
             acao = Integer.parseInt(JOptionPane.showInputDialog(null,
-                    "Informe Qual o Tipo da Sua Conta\n 1 - Pessoa Física 2 - Pessoa Jurídica"));
+                    "Criação de Conta \nInforme Qual o Tipo da Sua Conta\n 1 - Pessoa Física 2 - Pessoa Jurídica"));
 
             switch (acao) {
                 // Conta PF
                 case 1:
                     setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe o Nome da Conta: "));
-                    setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe sua Idade: ")));
+                    setIdade(Integer.parseInt(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \nInforme sua Idade: ")));
                     if (getIdade() >= 18) {
                     setCpf(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe Seu CPF: "));
                     setSenha(JOptionPane.showInputDialog("Criação de Conta - Pessoa Física \n Informe uma Senha: "));
@@ -37,7 +37,7 @@ public class Conta extends Pessoa {
                 case 2:
                     // Conta PJ
                     setNome(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe o Nome da Conta: "));
-                    setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe sua Idade: ")));
+                    setIdade(Integer.parseInt(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \nInforme sua Idade: ")));
                     if (getIdade() >= 18) {
                     setCnpj(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe Seu CNPJ: "));
                     setSenha(JOptionPane.showInputDialog("Criação de Conta - Pessoa Jurídica \n Informe uma Senha: "));
@@ -55,27 +55,27 @@ public class Conta extends Pessoa {
 
     // Método de Saque
     public void saque() {
-        JOptionPane.showMessageDialog(null, "Efetue seu Saque");
-        saque = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Saque (Limite R$2500): "));
+        JOptionPane.showMessageDialog(null, "Saque \nEfetue seu Saque");
+        saque = Integer.parseInt(JOptionPane.showInputDialog("Saque \nInsira o Valor do Saque (Limite R$2500): "));
 
         if (saldo < saque || saque > 2500) {
             JOptionPane.showMessageDialog(null, "Não Foi Possivel Efetuar o Saque.");
 
         } else {
             saldo = saldo - saque;
-            JOptionPane.showMessageDialog(null, "Saque Efetuado! \n Saldo Atual: R$" + saldo);
+            JOptionPane.showMessageDialog(null, "Saque \nSaque Efetuado! \n Saldo Atual: R$" + saldo);
 
         }
     }
 
     // Método de Deposito
     public void deposito() {
-        JOptionPane.showMessageDialog(null, "Efetue seu Depósito");
-        deposito = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Depósito: "));
+        JOptionPane.showMessageDialog(null, "Depósito \nEfetue seu Depósito");
+        deposito = Integer.parseInt(JOptionPane.showInputDialog("Depósito \nInsira o Valor do Depósito: "));
 
         if (deposito > 0) {
             saldo = saldo + deposito;
-            JOptionPane.showMessageDialog(null, "Depósito Efetuado! \n Saldo Atual: R$" + saldo);
+            JOptionPane.showMessageDialog(null, "Depósito \nDepósito Efetuado! \n Saldo Atual: R$" + saldo);
 
         } else {
             JOptionPane.showMessageDialog(null, "Não Foi Possível Efetuar o Depósito.");
@@ -85,15 +85,15 @@ public class Conta extends Pessoa {
 
     // Método de Emprestimo
     public void emprestimo() {
-        JOptionPane.showMessageDialog(null, "Efetue seu Emprestimo");
-        emprestimo = Integer.parseInt(JOptionPane.showInputDialog("Insira o Valor do Emprestimo (Limite R$5000): "));
+        JOptionPane.showMessageDialog(null, "Empréstimo \nEfetue seu Empréstimo");
+        emprestimo = Integer.parseInt(JOptionPane.showInputDialog("Empréstimo \nInsira o Valor do Empréstimo (Limite R$5000): "));
 
-        if (emprestimo > 0 && emprestimo < 5000) {
+        if (emprestimo > 0 && emprestimo <= 5000) {
             saldo = saldo + emprestimo;
-            JOptionPane.showMessageDialog(null, "Emprestimo Efetuado! Saldo Atual: R$" + saldo);
+            JOptionPane.showMessageDialog(null, "Empréstimo \nEmpréstimo Efetuado! Saldo Atual: R$" + saldo);
 
         } else {
-            JOptionPane.showMessageDialog(null, "Não Foi Possível Efetuar o Emprestimo.");
+            JOptionPane.showMessageDialog(null, "Não Foi Possível Efetuar o Empréstimo.");
 
         }
     }
