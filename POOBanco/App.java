@@ -2,12 +2,11 @@ package POOBanco;
 
 import javax.swing.JOptionPane;
 
-public class App extends Conta {
+public class App {
     public static void main(String[] args) {
 
         // Declaração de Atributos
-        Conta[] conta = new Conta[1
-        ];
+        Conta[] conta = new Conta[1];
         int contaAtual = 0;
         int acao1 = 0;
         int acao = 0;

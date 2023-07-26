@@ -1,24 +1,26 @@
 package RevisaoFPOO.Cadastro;
 
-public class Animais {
+public abstract class Animais {
     
     // atributos
-    String porte;
-    String proprietario;
-    String genero;
-    String especie;
+    String nome;
     double peso;
+    String especie;
+    String sexo;
+    String proprietario;
+    int idade;
 
     //metodos
 
     // construtor preenchido
-    public Animais(String porte, String proprietario, String genero, String especie, double peso) {
-        this.porte = porte; // > refernte ao metodo
+    public Animais(String nome, String proprietario, String sexo, String especie, double peso, int idade) {
+        this.peso = peso; // > refernte ao metodo
         // referente ao atributo
         this.proprietario = proprietario;
-        this.genero = genero;
+        this.sexo = sexo;
         this.especie = especie;
         this.peso = peso;
+        this.idade = idade;
     }
      // construtor vazio
 
@@ -27,12 +29,12 @@ public class Animais {
 
     // getters and setters
 
-    public String getPorte() {
-        return porte;
+    public String getNome() {
+        return nome;
     }
 
-    public void setPorte(String porte) {
-        this.porte = porte;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getProprietario() {
@@ -43,12 +45,12 @@ public class Animais {
         this.proprietario = proprietario;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getEspecie() {
@@ -65,6 +67,14 @@ public class Animais {
 
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
 
