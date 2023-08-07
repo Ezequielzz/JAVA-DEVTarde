@@ -4,7 +4,8 @@ import javax.swing.JOptionPane;
 
 public class ExemploTryCatch {
     public static void main(String[] args) {
-        double n1, n2;
+        int n1;
+        int n2;
         boolean ligado = true;
         int acao = 0;
 
@@ -20,9 +21,9 @@ public class ExemploTryCatch {
                         n1 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         n2 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         JOptionPane.showMessageDialog(null, "O Resultado Da Soma é: " + (n1 + n2));
+
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "ERRO - Valor Digitado Não é Um Número Inteiro!");
-                        // TODO: handle exception
                     }
                     break;
 
@@ -32,9 +33,9 @@ public class ExemploTryCatch {
                         n1 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         n2 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         JOptionPane.showMessageDialog(null, "O Resultado Da Subtração é: " + (n1 - n2));
+
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "ERRO - Valor Digitado Não é Um Número Inteiro!");
-                        // TODO: handle exception
                     }
                     break;
 
@@ -44,9 +45,9 @@ public class ExemploTryCatch {
                         n1 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         n2 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         JOptionPane.showMessageDialog(null, "O Resultado Da Multiplicação é: " + (n1 * n2));
+
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "ERRO - Valor Digitado Não é Um Número Inteiro!");
-                        // TODO: handle exception
                     }
                     break;
 
@@ -55,19 +56,20 @@ public class ExemploTryCatch {
                         n1 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         n2 = Integer.parseInt(JOptionPane.showInputDialog("Digite Um Número Inteiro"));
                         JOptionPane.showMessageDialog(null, "O Resultado Da Divisão é: " + (n1 / n2));
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "ERRO - Valor Digitado Não é Um Número Inteiro!");
-                        // TODO: handle exception
+
+                    } catch (NumberFormatException e1) {
+                         JOptionPane.showMessageDialog(null, "ERRO - Não é Possível Dividir Por Zero!");
+
                     }
 
-                    catch (ArithmeticException e) {
-                        JOptionPane.showMessageDialog(null, "ERRO - Valor Digitado Não é Possível Dividir Por Zero!");
-                        // TODO: handle exception
+                    catch (ArithmeticException e2) {
+                        JOptionPane.showMessageDialog(null, "ERRO - Não é Possível Dividir Por Zero!");
+
                     }
 
-                    catch (Exception e) {
+                    catch (Exception e3) {
                         JOptionPane.showMessageDialog(null, "ERRO - Valor Digitado Não é Um Número Inteiro!");
-                        // TODO: handle exception
+
                     }
 
                     break;
