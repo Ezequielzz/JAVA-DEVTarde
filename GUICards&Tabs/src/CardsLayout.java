@@ -1,11 +1,8 @@
-import java.util.logging.Handler;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -27,6 +24,7 @@ public class CardsLayout extends JFrame {
         card1.add(new JButton("Botão 1"));
         card1.add(new JButton("Botão 2"));
         card1.add(new JButton("Botão 3"));
+
         JPanel card2 = new JPanel();
         card2.add(new JTextField("TextField", 20));
         // Adicionando Cards a um CardsLayout
