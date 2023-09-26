@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Exercicio1 extends JFrame {
+
     JPanel painel0;
     JPanel painel1;
     JPanel painel2;
@@ -23,7 +24,9 @@ public class Exercicio1 extends JFrame {
     public Exercicio1() {
         // Construtor
         super("Exercicio 1 Extra");
-        painel0 = new JPanel(new CardLayout());
+        painel0 = new JPanel();
+        CardLayout cl = new CardLayout();
+        painel0.setLayout(cl);
         painel1 = new JPanel();
         painel2 = new JPanel();
         painel3 = new JPanel();
@@ -62,43 +65,32 @@ public class Exercicio1 extends JFrame {
         painel0.add(painel3);
 
         botaoNext1.addActionListener(e -> {
-            painel1.setVisible(false);
-            painel2.setVisible(true);
-            painel3.setVisible(false);
+            cl.next(painel0);
         });
 
         botaoNext2.addActionListener(e -> {
-            painel1.setVisible(false);
-            painel2.setVisible(false);
-            painel3.setVisible(true);
+            cl.next(painel0);
         });
 
         botaoNext3.addActionListener(e -> {
-            painel1.setVisible(true);
-            painel2.setVisible(false);
-            painel3.setVisible(false);
+            cl.next(painel0);
         });
 
 
         botaoBack1.addActionListener(e -> {
-            painel1.setVisible(false);
-            painel2.setVisible(false);
-            painel3.setVisible(true);
+            cl.previous(painel0);
         });
 
         botaoBack2.addActionListener(e -> {
-            painel1.setVisible(true);
-            painel2.setVisible(false);
-            painel3.setVisible(false);
+            cl.previous(painel0);
         });
 
          botaoBack3.addActionListener(e -> {
-             painel1.setVisible(false);
-             painel2.setVisible(true);
-             painel3.setVisible(false);
+             cl.previous(painel0);
          });
 
         this.setDefaultCloseOperation(2);
+        this.setBounds(800, 400, WIDTH, HEIGHT);
         this.add(painel0);
         this.pack();
         this.setVisible(true);
