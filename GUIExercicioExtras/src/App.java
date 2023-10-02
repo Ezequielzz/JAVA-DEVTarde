@@ -3,6 +3,8 @@ public class App {
 
         // new Exercicio1();
 
-        new Exercicio3();
+        // new Exercicio3();
+
+        new Exercicio5();
     }
 }

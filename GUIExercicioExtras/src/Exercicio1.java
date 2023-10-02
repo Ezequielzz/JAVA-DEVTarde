@@ -92,7 +92,6 @@ public class Exercicio1 extends JFrame {
         this.setDefaultCloseOperation(2);
         this.setBounds(800, 400, WIDTH, HEIGHT);
         this.add(painel0);
-        this.pack();
         this.setVisible(true);
     }
 
