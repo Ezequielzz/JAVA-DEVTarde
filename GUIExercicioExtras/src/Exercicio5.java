@@ -387,6 +387,40 @@ public class Exercicio5 extends JFrame {
 
         // ---------- XXXXXXXXX ----------
 
+        // ---------- Painel Chances ----------
+
+        // Criando os Painéis e Setando os Layouts dos Paineis
+        JPanel painelChances = new JPanel();
+        painelChances.setLayout(new CardLayout());
+
+        JPanel painelSubChances = new JPanel();
+        painelSubChances.setLayout(new GridLayout(6, 1, 0, 10));
+        painelChances.add(painelSubChances);
+        // Adicionando um espaço entre o botão e a borda do painel
+        painelSubChances.setBorder(new EmptyBorder(20, 10, 20, 10));
+
+        JLabel tituloChances = new JLabel("Quiz NWFootball");
+        tituloChances.setBorder(new EmptyBorder(0, 15, 20, 5));
+        tituloChances.setFont(fonte);
+
+        JLabel descricaoChances1 = new JLabel("Você Perdeu Todas Suas Chances");
+        JLabel descricaoChances2 = new JLabel("Deseja Tentar Novamente ou Encerrar?");
+
+        JButton botaoTentarNovamente = new JButton("Tentar Novamente");
+        botaoTentarNovamente.setBackground(Color.ORANGE);
+
+        JButton botaoEncerrar2 = new JButton("Encerrar");
+        botaoEncerrar2.setBackground(Color.RED);
+
+        // Acionando os Componentes no Painel Chances
+        painelSubChances.add(tituloChances);
+        painelSubChances.add(descricaoChances1);
+        painelSubChances.add(descricaoChances2);
+        painelSubChances.add(botaoTentarNovamente);
+        painelSubChances.add(botaoEncerrar2);
+
+        // ---------- XXXXXXXXX ----------
+
         // Adicionando a Pilha de Cards
         painelPrincipal.add(painelInicio);
         painelPrincipal.add(painelJogo1);
@@ -394,7 +428,8 @@ public class Exercicio5 extends JFrame {
         painelPrincipal.add(painelJogo3);
         painelPrincipal.add(painelJogo4);
         painelPrincipal.add(painelJogo5);
-        painelPrincipal.add(painelFinal);
+        painelPrincipal.add(painelFinal, "painelFinal");
+        painelPrincipal.add(painelChances, "painelChances");
 
         // Tratamento de Eventos
 
@@ -444,39 +479,78 @@ public class Exercicio5 extends JFrame {
         });
 
         enviar3.addActionListener(e -> {
-            if (alternativa9.isSelected() && !alternativa10.isSelected() && !alternativa11.isSelected()
+            if (chances == 1) {
+                cl.show(painelPrincipal, "painelChances");
+            }
+
+            else if (!alternativa9.isSelected() && !alternativa10.isSelected() && !alternativa11.isSelected()
+                    && !alternativa12.isSelected()) {
+                infos3.setText("Acertos: " + acertos + "/5 " + "Chances: " + chances + "/3 - Selecione uma Opção!");
+
+            } else if (alternativa9.isSelected() && !alternativa10.isSelected() && !alternativa11.isSelected()
                     && !alternativa12.isSelected()) {
                 acertos++;
+                infos4.setText("Acertos: " + acertos + "/5 " + "Chances: " + chances + "/3");
+                cl.next(painelPrincipal);
+
             } else {
                 chances--;
+                infos4.setText("Acertos: " + acertos + "/5 " + "Chances: " + chances + "/3");
+                cl.next(painelPrincipal);
             }
             infoAcertos.setText("Você Acertou " + acertos + "/5!");
             infoChances.setText("Você Encerrou Com " + chances + "/3 Chances!");
-            cl.next(painelPrincipal);
         });
 
         enviar4.addActionListener(e -> {
-            if (alternativa13.isSelected() && !alternativa14.isSelected() && !alternativa15.isSelected()
+
+            if (chances == 0) {
+                cl.show(painelPrincipal, "painelChances");
+            }
+
+            else if (!alternativa13.isSelected() && !alternativa14.isSelected() && !alternativa15.isSelected()
+                    && !alternativa16.isSelected()) {
+                infos4.setText("Acertos: " + acertos + "/5 " + "Chances: " + chances + "/3 - Selecione uma Opção!");
+
+            } else if (alternativa13.isSelected() && !alternativa14.isSelected() && !alternativa15.isSelected()
                     && !alternativa16.isSelected()) {
                 acertos++;
+                infos5.setText("Acertos: " + acertos + "/5 " + "Chances: " + chances + "/3");
+                cl.next(painelPrincipal);
+
             } else {
                 chances--;
+                infos5.setText("Acertos: " + acertos + "/5 " + "Chances: " + chances + "/3");
+                cl.next(painelPrincipal);
             }
             infoAcertos.setText("Você Acertou " + acertos + "/5!");
             infoChances.setText("Você Encerrou Com " + chances + "/3 Chances!");
-            cl.next(painelPrincipal);
         });
 
         enviar5.addActionListener(e -> {
-            if (alternativa19.isSelected() && !alternativa18.isSelected() && !alternativa17.isSelected()
+            if (!alternativa19.isSelected() && !alternativa18.isSelected() && !alternativa17.isSelected()
+                    && !alternativa20.isSelected()) {
+                infos5.setText("Acertos: " + acertos + "/5 " + "Chances: " + chances + "/3 - Selecione uma Opção!");
+
+            } else if (alternativa19.isSelected() && !alternativa18.isSelected() && !alternativa17.isSelected()
                     && !alternativa20.isSelected()) {
                 acertos++;
+                cl.show(painelPrincipal, "painelFinal");
+
             } else {
                 chances--;
+                cl.show(painelPrincipal, "painelFinal");
             }
             infoAcertos.setText("Você Acertou " + acertos + "/5!");
             infoChances.setText("Você Encerrou Com " + chances + "/3 Chances!");
-            cl.next(painelPrincipal);
+        });
+
+        botaoTentarNovamente.addActionListener(e -> {
+            acertos = 0;
+            chances = 3;
+            infoAcertos.setText("Você Acertou " + acertos + "/5!");
+            infoChances.setText("Você Encerrou Com " + chances + "/3 Chances");
+            cl.first(painelPrincipal);
         });
 
         botaoFinalizar.addActionListener(e -> {
@@ -484,10 +558,14 @@ public class Exercicio5 extends JFrame {
             chances = 3;
             infoAcertos.setText("Você Acertou " + acertos + "/5!");
             infoChances.setText("Você Encerrou Com " + chances + "/3 Chances");
-            cl.next(painelPrincipal);
+            cl.first(painelPrincipal);
         });
-
+        
         botaoEncerrar.addActionListener(e -> {
+            System.exit(0);
+        });
+        
+        botaoEncerrar2.addActionListener(e -> {
             System.exit(0);
         });
 
