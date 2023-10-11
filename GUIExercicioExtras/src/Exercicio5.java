@@ -550,14 +550,30 @@ public class Exercicio5 extends JFrame {
             chances = 3;
             infoAcertos.setText("Você Acertou " + acertos + "/5!");
             infoChances.setText("Você Encerrou Com " + chances + "/3 Chances");
+            
+            // Limpa a seleção dos botões de opção em cada grupo
+            alternativasJogo1.clearSelection();
+            alternativasJogo2.clearSelection();
+            alternativasJogo3.clearSelection();
+            alternativasJogo4.clearSelection();
+            alternativasJogo5.clearSelection();
+            
             cl.first(painelPrincipal);
         });
-
+        
         botaoFinalizar.addActionListener(e -> {
             acertos = 0;
             chances = 3;
             infoAcertos.setText("Você Acertou " + acertos + "/5!");
             infoChances.setText("Você Encerrou Com " + chances + "/3 Chances");
+            
+            // Limpa a seleção dos botões de opção em cada grupo
+            alternativasJogo1.clearSelection();
+            alternativasJogo2.clearSelection();
+            alternativasJogo3.clearSelection();
+            alternativasJogo4.clearSelection();
+            alternativasJogo5.clearSelection();
+            
             cl.first(painelPrincipal);
         });
         
