@@ -1,4 +1,5 @@
 import java.util.List;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,16 +19,7 @@ public class OperacoesUsuarios {
         Usuario usuario = new Usuario(nome, idadeInt);
         usuarios.add(usuario);
         atualizarTabela();
-    }
-
-    public void agendarUsuario(String nome, String idade, String hora, String dia, String mes) {
-        int idadeInt = Integer.parseInt(idade);
-        int horaInt = Integer.parseInt(hora);
-        int diaInt = Integer.parseInt(dia);
-        int mesInt = Integer.parseInt(mes);
-        Usuario usuario = new Usuario(nome, idadeInt, horaInt, diaInt, mesInt);
-        usuarios.add(usuario);
-        atualizarTabela();
+        
     }
 
     public void atualizarUsuario(int linhaSelecionada, String nome, String idade) {
@@ -61,19 +53,5 @@ public class OperacoesUsuarios {
             tableModel.addRow(new Object[] { usuario.getNome(), usuario.getIdade() });
         }
     }
-
-    private void atualizarAgenda(inputNome.Text(), inputIdade.Text(), inputHora.Text(), inputDia.Text(), inputMes.Text()) {
-        tableModel.setRowCount(0);
-        for (Usuario usuario : usuarios) {
-            tableModel.addRow(new Object[] {
-                usuario.getNome(),
-                usuario.getIdade(),
-                usuario.getHora(),
-                usuario.getDia(),
-                usuario.getMes()
-            });
-        }
-    }
-
-    
 }
+
