@@ -1,3 +1,11 @@
 {
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\DEVTarde A\\Downloads\\postgresql-42.6.0.jar"
+    ],
+    "java.project.sourcePaths": [
+        "JDBCTeste/src",
+        "jdbctestemaven/src/main/java/app"
+    ]
 }
