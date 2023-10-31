@@ -5,7 +5,8 @@
         "c:\\Users\\DEVTarde A\\Downloads\\postgresql-42.6.0.jar"
     ],
     "java.project.sourcePaths": [
+        "jdbctestemaven/src/main/java/app",
         "JDBCTeste/src",
-        "jdbctestemaven/src/main/java/app"
+        "JDBCConnectionTest/src"
     ]
 }
