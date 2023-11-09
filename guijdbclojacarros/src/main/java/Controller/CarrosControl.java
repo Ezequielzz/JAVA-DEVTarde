@@ -16,12 +16,13 @@ public class CarrosControl {
     private JTable table;
 
     // Construtor
-    public CarrosControl(List<Carros> carros, DefaultTableModel tableModel, JTable table)
-{
-this.carros = carros;
-this.tableModel = tableModel;
-this.table = table;
-// Método para atualizar a tabela de exibição com dados do banco de dados
+    public CarrosControl(List<Carros> carros, DefaultTableModel tableModel, JTable table) {
+        this.carros = carros;
+        this.tableModel = tableModel;
+        this.table = table;
+    }
+
+    // Método para atualizar a tabela de exibição com dados do banco de dados
     private void atualizarTabela() {
         tableModel.setRowCount(0); // Limpa todas as linhas existentes na tabela
         carros = new CarrosDAO().listarTodos();
@@ -54,5 +55,4 @@ this.table = table;
         // Chama o método de exclusão no banco de dados
         atualizarTabela(); // Atualiza a tabela de exibição após a exclusão
     }
-}
 }
