@@ -2,7 +2,6 @@ package Connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
@@ -22,17 +21,6 @@ public class ConnectionFactory {
         try {
             if (connection != null) {
                 connection.close();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public static void closeConnection(Connection connection, PreparedStatement stmt) {
-        try {
-            if (connection != null && stmt != null) {
-                connection.close();
-                stmt.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
