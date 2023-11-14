@@ -8,5 +8,6 @@
         "jdbctestemaven/src/main/java/app",
         "JDBCTeste/src",
         "JDBCConnectionTest/src"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

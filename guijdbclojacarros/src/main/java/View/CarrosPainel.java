@@ -1,4 +1,4 @@
-package View;
+package main.java.View;
 
 import java.util.List;
 
@@ -10,9 +10,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import main.java.Connection.CarrosDAO;
+
 import java.awt.*;
 
-import Model.Carros;
+import main.java.Model.Carros;
 
 public class CarrosPainel extends JPanel {
     // Atributos
@@ -66,8 +69,25 @@ public class CarrosPainel extends JPanel {
         table = new JTable(tableModel);
         jSPane.setViewportView(table);
 
+        // Criar a tabela se ela não existir
+        new CarrosDAO().criaTabela();
+        // Atualizar a Tabela na Abertura da Janela
+        atualizarTabela();
+
         // Tratamento de Eventos (Construtor)
     }
 
-    // Métodos
+    // Métodos (Atualizar Tabela)
+        // Método para atualizar a tabela de exibição com dados do banco de dados
+        private void atualizarTabela() {
+            tableModel.setRowCount(0); // Limpa todas as linhas existentes na tabela
+            carros = new CarrosDAO().listarTodos();
+            // Obtém os carros atualizados do banco de dados
+            for (Carros carro : carros) {
+                // Adiciona os dados de cada carro como uma nova linha na tabela Swing
+                tableModel.addRow(new Object[] { carro.getMarca(), carro.getModelo(),
+    
+                        carro.getAno(), carro.getPlaca(), carro.getValor() });
+            }
+        }
 }
