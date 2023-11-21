@@ -39,31 +39,31 @@ public class CarrosPainel extends JPanel {
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(5, 2));
 
-        inputPanel.add(new JLabel("Marca"));
+        inputPanel.add(new JLabel("Marca:"));
         carMarcaField = new JTextField(20);
         inputPanel.add(carMarcaField);
 
-        inputPanel.add(new JLabel("Modelo"));
+        inputPanel.add(new JLabel("Modelo:"));
         carModeloField = new JTextField(20);
         inputPanel.add(carModeloField);
 
-        inputPanel.add(new JLabel("Ano"));
+        inputPanel.add(new JLabel("Ano:"));
         carAnoField = new JTextField(20);
         inputPanel.add(carAnoField);
 
-        inputPanel.add(new JLabel("Placa"));
+        inputPanel.add(new JLabel("Placa:"));
         carPlacaField = new JTextField(20);
         inputPanel.add(carPlacaField);
 
-        inputPanel.add(new JLabel("Valor"));
+        inputPanel.add(new JLabel("Valor:"));
         carValorField = new JTextField(20);
         inputPanel.add(carValorField);
         add(inputPanel);
 
         JPanel botoes = new JPanel();
         botoes.add(cadastrar = new JButton("Cadastrar"));
-        botoes.add(editar = new JButton("Editar"));
-        botoes.add(apagar = new JButton("Apagar"));
+        botoes.add(editar = new JButton("Salvar Edição"));
+        botoes.add(apagar = new JButton("Salvar Exclusão"));
         add(botoes);
         // tabela de carros
         JScrollPane jSPane = new JScrollPane();
@@ -99,62 +99,107 @@ public class CarrosPainel extends JPanel {
 
         cadastrar.addActionListener(e -> {
 
-            try {
-                int ano = Integer.parseInt(carAnoField.getText());
-                int valor = Integer.parseInt(carValorField.getText());
+            String anoText = carAnoField.getText();
+            String valorText = carValorField.getText();
 
+            boolean camposCadastroVazio = carMarcaField.getText().isEmpty() || carModeloField.getText().isEmpty()
+                    || carPlacaField.getText().isEmpty();
 
-                if (ano > 1940 && ano <= 2024) {
-                    operacoes.cadastrar(carMarcaField.getText(), carModeloField.getText(), carAnoField.getText(),
-                            carPlacaField.getText(), carValorField.getText());
+            if ((!anoText.isEmpty() && !valorText.isEmpty())) {
+                try {
+                    int ano = Integer.parseInt(anoText);
+                    int valor = Integer.parseInt(valorText);
 
-                if (carMarcaField.getText().equals("") || carModeloField.getText().equals("") || carAnoField.getText().equals("")
-                || carPlacaField.getText().equals("") || carAnoField.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 1);
-            }
-                    
-                    // Limpa os campos de entrada apos a operação de cadastro
-                    carMarcaField.setText("");
-                    carModeloField.setText("");
-                    carAnoField.setText("");
-                    carPlacaField.setText("");
-                    carValorField.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 1);
+                    if (camposCadastroVazio) {
+                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida",
+                                2);
+                    }
+
+                    else if (valor < 9000 || ano >= 1970 && ano <= 2024) {
+                        JOptionPane.showMessageDialog(null, "Insira um Ano ou Valor Válido", "Informação Inválida", 2);
+                    }
+
+                    else {
+                        operacoes.cadastrar(carMarcaField.getText(), carModeloField.getText(), carAnoField.getText(),
+                                carPlacaField.getText(), carValorField.getText());
+
+                        // Limpa os campos de entrada após a operação de exclusão
+                        carMarcaField.setText("");
+                        carModeloField.setText("");
+                        carAnoField.setText("");
+                        carPlacaField.setText("");
+                        carValorField.setText("");
+                    }
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
                 }
-            } catch (Exception e2) {
-                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
             }
-
         });
 
         // Configura a ação do botão editar
         editar.addActionListener(e -> {
-            // Chama o metodo "cadastrar" do objeto operacoes com os valores dos campos de
+            // Chama o metodo "editar" do objeto operacoes com os valores dos campos de
             // entrada
-            operacoes.atualizar(carMarcaField.getText(), carModeloField.getText(), carAnoField.getText(),
-                    carPlacaField.getText(), carValorField.getText());
+            String anoText = carAnoField.getText();
+            String valorText = carValorField.getText();
 
-            // Limpa os campos de entrada após a operação de edição
-            carMarcaField.setText("");
-            carModeloField.setText("");
-            carAnoField.setText("");
-            carPlacaField.setText("");
-            carValorField.setText("");
+            boolean camposCadastroVazio = carMarcaField.getText().isEmpty() || carModeloField.getText().isEmpty()
+                    || carPlacaField.getText().isEmpty();
+
+            if ((!anoText.isEmpty() && !valorText.isEmpty())) {
+                try {
+                    int ano = Integer.parseInt(anoText);
+                    int valor = Integer.parseInt(valorText);
+
+                    if (camposCadastroVazio) {
+                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida",
+                                2);
+                    } else {
+                        operacoes.atualizar(carMarcaField.getText(), carModeloField.getText(), carAnoField.getText(),
+                                carPlacaField.getText(), carValorField.getText());
+                        // Limpa os campos de entrada após a operação de edição
+                        carMarcaField.setText("");
+                        carModeloField.setText("");
+                        carAnoField.setText("");
+                        carPlacaField.setText("");
+                        carValorField.setText("");
+                    }
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
+            }
+
         });
 
         // Configura a ação do botão "apagar" para excluir um registro no banco de dados
         apagar.addActionListener(e -> {
+
             // Chama o método "apagar" do objeto operacoes com o valor do campo de entrada
             // "placa"
-            operacoes.apagar(carPlacaField.getText());
 
-            // Limpa os campos de entrada após a operação de exclusão
-            carMarcaField.setText("");
-            carModeloField.setText("");
-            carAnoField.setText("");
-            carPlacaField.setText("");
-            carValorField.setText("");
+            boolean camposCadastroVazio = carMarcaField.getText().isEmpty() || carModeloField.getText().isEmpty()
+                    || carPlacaField.getText().isEmpty();
+
+            if (camposCadastroVazio) {
+                JOptionPane.showMessageDialog(null, "Não é possível dados vazios", "Informação Inválida",
+                        2);
+            } else if (JOptionPane.showConfirmDialog(null, "Deseja excluir esse carro?",
+                    "Excluindo Tarefa...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                operacoes.apagar(carPlacaField.getText());
+
+                // Limpa os campos de entrada após a operação de exclusão
+                carMarcaField.setText("");
+                carModeloField.setText("");
+                carAnoField.setText("");
+                carPlacaField.setText("");
+                carValorField.setText("");
+
+            }
         });
 
     };

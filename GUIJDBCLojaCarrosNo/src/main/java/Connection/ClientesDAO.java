@@ -8,23 +8,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.Model.Carros;
+import main.java.Model.Clientes;
 
-public class CarrosDAO {
+public class ClientesDAO {
 
     // Atributos
     private Connection connection;
-    private List<Carros> carros;
+    private List<Clientes> clientes;
 
     // Construtor
-    public CarrosDAO() {
+    public ClientesDAO() {
         this.connection = ConnectionFactory.getConnection();
     }
 
     // Métodos do CRUD
     // criar Tabela
     public void criaTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS carros_lojacarros2 (MARCA VARCHAR(255),MODELO VARCHAR(255),ANO VARCHAR(255),PLACA VARCHAR(255) PRIMARY KEY, VALOR VARCHAR(255))";
+        String sql = "CREATE TABLE IF NOT EXISTS clientes_lojacarros2 (NOME VARCHAR(255),IDADE VARCHAR(255),SEXO VARCHAR(255),RG VARCHAR(255),CPF VARCHAR(255) PRIMARY KEY)";
 
         try (Statement stmt = this.connection.createStatement()) {
             stmt.execute(sql);
@@ -38,29 +38,29 @@ public class CarrosDAO {
     }
 
     // Listar todos os valores cadastrados
-    public List<Carros> listarTodos() {
+    public List<Clientes> listarTodos() {
         PreparedStatement stmt = null;
         // Declaração do objeto PreparedStatement para executar a consulta
         ResultSet rs = null;
         // Declaração do objeto ResultSet para armazenar os resultados da consulta
-        carros = new ArrayList<>();
-        // Cria uma lista para armazenar os carros recuperados do banco de dados
+        clientes = new ArrayList<>();
+        // Cria uma lista para armazenar os clientes recuperados do banco de dados
         try {
-            stmt = connection.prepareStatement("SELECT * FROM carros_lojacarros2");
+            stmt = connection.prepareStatement("SELECT * FROM clientes_lojacarros2");
             // Prepara a consulta SQL para selecionar todos os registros da tabela
             rs = stmt.executeQuery();
             // Executa a consulta e armazena os resultados no ResultSet
             while (rs.next()) {
-                // Para cada registro no ResultSet, cria um objeto Carros com os valores do
+                // Para cada registro no ResultSet, cria um objeto clientes com os valores do
                 // registro
 
-                Carros carro = new Carros(
-                        rs.getString("marca"),
-                        rs.getString("modelo"),
-                        rs.getString("ano"),
-                        rs.getString("placa"),
-                        rs.getString("valor"));
-                carros.add(carro); // Adiciona o objeto Carros à lista de carros
+                Clientes cliente = new Clientes(
+                        rs.getString("nome"),
+                        rs.getString("idade"),
+                        rs.getString("sexo"),
+                        rs.getString("rg"),
+                        rs.getString("cpf"));
+                clientes.add(cliente); // Adiciona o objeto clientes à lista de clientes
             }
         } catch (SQLException ex) {
             System.out.println(ex); // Em caso de erro durante a consulta, imprime o erro
@@ -69,21 +69,21 @@ public class CarrosDAO {
 
             // Fecha a conexão, o PreparedStatement e o ResultSet
         }
-        return carros; // Retorna a lista de carros recuperados do banco de dados
+        return clientes; // Retorna a lista de clientes recuperados do banco de dados
     }
 
     // Cadastrar Carro no banco
-    public void cadastrar(String marca, String modelo, String ano, String placa, String valor) {
+    public void cadastrar(String nome, String idade, String sexo, String rg, String cpf) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para cadastrar na tabela
-        String sql = "INSERT INTO carros_lojacarros2 (marca, modelo, ano, placa, valor) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes_lojacarros2 (nome, idade, sexo, rg, cpf) VALUES (?, ?, ?, ?, ?)";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, marca);
-            stmt.setString(2, modelo);
-            stmt.setString(3, ano);
-            stmt.setString(4, placa);
-            stmt.setString(5, valor);
+            stmt.setString(1, nome);
+            stmt.setString(2, idade);
+            stmt.setString(3, sexo);
+            stmt.setString(4, rg);
+            stmt.setString(5, cpf);
             stmt.executeUpdate();
             System.out.println("Dados inseridos com sucesso");
 
@@ -95,18 +95,18 @@ public class CarrosDAO {
     }
 
     // Atualizar dados no banco
-    public void atualizar(String marca, String modelo, String ano, String placa, String valor) {
+    public void atualizar(String nome, String idade, String sexo, String rg, String cpf) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para atualizar dados pela placa
-        String sql = "UPDATE carros_lojacarros2 SET marca = ?, modelo = ?, ano = ?, valor = ? WHERE placa = ?";
+        String sql = "UPDATE clientes_lojacarros2 SET nome = ?, idade = ?, sexo = ?, rg = ?, WHERE cpf = ?";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, marca);
-            stmt.setString(2, modelo);
-            stmt.setString(3, ano);
-            stmt.setString(4, valor);
+            stmt.setString(1, nome);
+            stmt.setString(2, idade);
+            stmt.setString(3, sexo);
+            stmt.setString(4, rg);
             // placa é chave primaria não pode ser alterada.
-            stmt.setString(5, placa);
+            stmt.setString(5, cpf);
             stmt.executeUpdate();
             System.out.println("Dados atualizados com sucesso");
         } catch (SQLException e) {
@@ -117,13 +117,13 @@ public class CarrosDAO {
     }
 
     // Apagar dados do banco
-    public void apagar(String placa) {
+    public void apagar(String cpf) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para apagar dados pela placa
-        String sql = "DELETE FROM carros_lojacarros2 WHERE placa = ?";
+        String sql = "DELETE FROM clientes_lojacarros2 WHERE cpf = ?";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, placa);
+            stmt.setString(1, cpf);
             stmt.executeUpdate(); // Executa a instrução SQL
             System.out.println("Dado apagado com sucesso");
         } catch (SQLException e) {

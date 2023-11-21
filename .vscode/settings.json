@@ -7,7 +7,8 @@
     "java.project.sourcePaths": [
         "jdbctestemaven/src/main/java/app",
         "JDBCTeste/src",
-        "JDBCConnectionTest/src"
+        "JDBCConnectionTest/src",
+        "GUIJDBCLojaCarrosNo/src/main/java/app"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"
 }
