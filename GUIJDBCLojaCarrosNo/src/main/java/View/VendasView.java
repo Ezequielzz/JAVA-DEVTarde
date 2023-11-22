@@ -1,30 +1,40 @@
-// package main.java.View;
+package main.java.View;
 
-// import java.awt.List;
+import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import main.java.Connection.CarrosDAO;
+import main.java.Model.Carros;
+import main.java.Connection.ClientesDAO;
+import main.java.Model.Clientes;
 
-// import javax.swing.JComboBox;
-// import javax.swing.JPanel;
+public class VendasView extends JPanel {
+    JComboBox<String> carrosComboBox;
+    JComboBox<String> clientesComboBox;
+    List<Carros> carros;
+    List<Clientes> clientes;
 
-// import main.java.Connection.CarrosDAO;
-// import main.java.Model.Carros;
+    public VendasView() {
+        carrosComboBox = new JComboBox<>();
+        clientesComboBox = new JComboBox<>();
 
-// public class VendasView extends JPanel {
-//     JComboBox<String> carrosComboBox;
-//     List<Carros> carros;
+        // Preencha o JComboBox com os carros
+        carros = new CarrosDAO().listarTodos();
+        carrosComboBox.addItem("Selecione o Carro");
+        for (Carros carro : carros) {
+            carrosComboBox.addItem(carro.getMarca()
+                    + " " + carro.getModelo()
+                    + " " + carro.getPlaca());
+        }
+        add(carrosComboBox);
 
-
-//     public VendasView() {
-//         super();
-//         carrosComboBox = new JComboBox<>();
-
-//         // Preencha o JComboBox com os carros
-//         carros + new CarrosDAO().listarTodos();
-//         carrosComboBox.addItem("Selecione o Carro");
-//         for (Carros carro : carros) {
-//             carrosComboBox.addItem(carro.getMarca()
-//             + " " + carro.getModelo()
-//             + " " + carro.getPlaca());
-//         }
-//         add(carrosComboBox);
-//     }
-// }
+        // Preencha o JComboBox com os carros
+        clientes = new ClientesDAO().listarTodos();
+        clientesComboBox.addItem("Selecione o Cliente");
+        for (Clientes cliente : clientes) {
+            clientesComboBox.addItem(cliente.getNome()
+                    + " " + cliente.getCpf());
+        }
+        add(clientesComboBox);
+    }
+}

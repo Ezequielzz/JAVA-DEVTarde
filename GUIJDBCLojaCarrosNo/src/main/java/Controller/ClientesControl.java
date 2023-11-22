@@ -55,6 +55,8 @@ public class ClientesControl {
         new ClientesDAO().atualizar(nome, idade, sexo, rg, cpf);
         // Chama o método de atualização no banco de dados
         atualizarTabela(); // Atualiza a tabela de exibição após a atualização
+
+        
     }
 
     // Método para apagar um cliente do banco de dados

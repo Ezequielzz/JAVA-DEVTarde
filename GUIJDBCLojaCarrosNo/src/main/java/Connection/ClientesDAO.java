@@ -12,7 +12,7 @@ import main.java.Model.Clientes;
 
 public class ClientesDAO {
 
-    // Atributos
+    // Atributosy
     private Connection connection;
     private List<Clientes> clientes;
 
@@ -98,7 +98,7 @@ public class ClientesDAO {
     public void atualizar(String nome, String idade, String sexo, String rg, String cpf) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para atualizar dados pela placa
-        String sql = "UPDATE clientes_lojacarros2 SET nome = ?, idade = ?, sexo = ?, rg = ?, WHERE cpf = ?";
+        String sql = "UPDATE clientes_lojacarros2 SET nome = ?, idade = ?, sexo = ?, rg = ? WHERE cpf = ?";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, nome);

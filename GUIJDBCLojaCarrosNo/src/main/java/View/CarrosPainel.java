@@ -1,6 +1,8 @@
 package main.java.View;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -101,6 +103,7 @@ public class CarrosPainel extends JPanel {
 
             String anoText = carAnoField.getText();
             String valorText = carValorField.getText();
+            String placaText = carPlacaField.getText();
 
             boolean camposCadastroVazio = carMarcaField.getText().isEmpty() || carModeloField.getText().isEmpty()
                     || carPlacaField.getText().isEmpty();
@@ -115,7 +118,12 @@ public class CarrosPainel extends JPanel {
                                 2);
                     }
 
-                    else if (valor < 9000 || ano >= 1970 && ano <= 2024) {
+                    else if (!validarPlaca(placaText)) {
+                        JOptionPane.showMessageDialog(null, "Insira uma Placa Válida", "Informação Inválida",
+                                2);
+                    }
+
+                    else if (valor < 9000 || ano < 1970 && ano > 2024) {
                         JOptionPane.showMessageDialog(null, "Insira um Ano ou Valor Válido", "Informação Inválida", 2);
                     }
 
@@ -149,6 +157,7 @@ public class CarrosPainel extends JPanel {
                     || carPlacaField.getText().isEmpty();
 
             if ((!anoText.isEmpty() && !valorText.isEmpty())) {
+
                 try {
                     int ano = Integer.parseInt(anoText);
                     int valor = Integer.parseInt(valorText);
@@ -156,7 +165,14 @@ public class CarrosPainel extends JPanel {
                     if (camposCadastroVazio) {
                         JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida",
                                 2);
-                    } else {
+                    }
+
+                    else if (valor < 9000 || ano < 1970 && ano > 2024) {
+                        JOptionPane.showMessageDialog(null, "Insira um Ano ou Valor Válido", "Informação Inválida", 2);
+                    }
+
+                    else {
+
                         operacoes.atualizar(carMarcaField.getText(), carModeloField.getText(), carAnoField.getText(),
                                 carPlacaField.getText(), carValorField.getText());
                         // Limpa os campos de entrada após a operação de edição
@@ -217,4 +233,12 @@ public class CarrosPainel extends JPanel {
                     carro.getAno(), carro.getPlaca(), carro.getValor() });
         }
     }
+
+    private boolean validarPlaca(String placa) {
+        String regex = "^[A-Z]{3}\\d{4}$"; // Expressão regular sem o hífen
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(placa);
+        return matcher.matches();
+    }
+
 }
