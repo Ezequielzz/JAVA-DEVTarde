@@ -22,7 +22,7 @@ public class JanelaPrincipal extends JFrame {
         setBounds(100, 100, 600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        VendasView tab3 = new VendasView();
+        VendasPainel tab3 = new VendasPainel();
         jTPane.add("Vendas", tab3);
         setBounds(100, 100, 600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -23,7 +23,7 @@ import main.java.Model.Clientes;
 
 public class ClientesPainel extends JPanel {
     // Atributos
-    private JButton cadastrar, apagar, editar;
+    private JButton cadastrar, apagar, editar, atualizar;
     private JTextField clienteNomeField, clienteIdadeField, clienteSexoField, clienteRgField, clienteCpfField;
     private List<Clientes> clientes;
     private JTable table;
@@ -64,6 +64,7 @@ public class ClientesPainel extends JPanel {
         botoes.add(cadastrar = new JButton("Cadastrar"));
         botoes.add(editar = new JButton("Salvar Edição"));
         botoes.add(apagar = new JButton("Salvar Exclusão"));
+        botoes.add(atualizar = new JButton("Atualizar"));
         add(botoes);
         // tabela de carros
         JScrollPane jSPane = new JScrollPane();
@@ -112,13 +113,13 @@ public class ClientesPainel extends JPanel {
                     int idade = Integer.parseInt(idadeText);
 
                     if (camposCadastroVazio) {
-                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente1", "Informação Inválida",
+                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida",
                                 2);
                     } else if (idade < 18) {
-                        JOptionPane.showMessageDialog(null, "É Necessário ter 18 Anos para Registrar o Cadastro", "Informação Inválida",
+                        JOptionPane.showMessageDialog(null, "É Necessário ter 18 Anos para Registrar o Cadastro!", "Informação Inválida",
                                 2);
                     } else if (cpfText.length() != 11 || rgText.length() != 9) {
-                         JOptionPane.showMessageDialog(null, "Insira um RG ou CPF Válido", "Informação Inválida",
+                         JOptionPane.showMessageDialog(null, "Insira um RG ou CPF Válido!", "Informação Inválida",
                                  2);
                     } else {
                         operacoes.cadastrar(clienteNomeField.getText(), clienteIdadeField.getText(), clienteSexoField.getText(),
@@ -132,10 +133,10 @@ public class ClientesPainel extends JPanel {
                         clienteCpfField.setText("");
                     }
                 } catch (Exception e2) {
-                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente2", "Informação Inválida", 2);
+                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida", 2);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente3", "Informação Inválida", 2);
+                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida", 2);
             }
         });
 
@@ -156,13 +157,13 @@ public class ClientesPainel extends JPanel {
                     int idade = Integer.parseInt(idadeText);
                     
                     if (camposCadastroVazio) {
-                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente1", "Informação Inválida",
+                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida",
                                 2);
                     } else if (idade < 18) {
-                        JOptionPane.showMessageDialog(null, "É Necessário ter 18 Anos para Registrar o Cadastro", "Informação Inválida",
+                        JOptionPane.showMessageDialog(null, "É Necessário ter 18 Anos para Registrar o Cadastro!", "Informação Inválida",
                                 2);
                     } else if (cpfText.length() != 11 || rgText.length() != 9) {
-                         JOptionPane.showMessageDialog(null, "Insira um RG ou CPF Válido", "Informação Inválida",
+                         JOptionPane.showMessageDialog(null, "Insira um RG ou CPF Válido!", "Informação Inválida",
                                  2);
                     } else {
                         operacoes.atualizar(clienteNomeField.getText(), clienteIdadeField.getText(), clienteSexoField.getText(),
@@ -176,11 +177,11 @@ public class ClientesPainel extends JPanel {
                         clienteCpfField.setText("");
                     }
                 } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente2" + e1, "Informação Inválida", 2);
+                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!" + e1, "Informação Inválida", 2);
                 }
                 
             } else {
-                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente3", "Informação Inválida", 2);
+                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida", 2);
             }
 
         });
@@ -195,7 +196,7 @@ public class ClientesPainel extends JPanel {
                     || clienteRgField.getText().isEmpty();
 
             if (camposCadastroVazio) {
-                JOptionPane.showMessageDialog(null, "Não é Possível Excluir Dados Vazios", "Operação Inválida",
+                JOptionPane.showMessageDialog(null, "Não é Possível Excluir Dados Vazios!", "Operação Inválida",
                         2);
             } else if (JOptionPane.showConfirmDialog(null, "Deseja Excluir Esse Cliente?",
                     "Excluindo Tarefa...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -210,6 +211,11 @@ public class ClientesPainel extends JPanel {
                 clienteCpfField.setText("");
 
             }
+        });
+
+        atualizar.addActionListener(e -> {
+            operacoes.atualizar(clienteNomeField.getText(), clienteIdadeField.getText(), clienteSexoField.getText(),
+                                clienteRgField.getText(), clienteCpfField.getText());
         });
 
     };

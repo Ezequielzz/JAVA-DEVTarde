@@ -2,12 +2,10 @@
     "java.debug.settings.onBuildFailureProceed": true,
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "c:\\Users\\DEVTarde A\\Downloads\\postgresql-42.6.0.jar"
+        "c:\\Users\\DEVTarde A\\Downloads\\postgresql-42.6.0.jar",
+        "c:\\Users\\Lucas\\Downloads\\postgresql-42.6.0.jar"
     ],
     "java.project.sourcePaths": [
-        "jdbctestemaven/src/main/java/app",
-        "JDBCTeste/src",
-        "JDBCConnectionTest/src",
         "GUIJDBCLojaCarrosNo/src/main/java/app"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"

@@ -67,6 +67,7 @@ public class CarrosPainel extends JPanel {
         botoes.add(editar = new JButton("Salvar Edição"));
         botoes.add(apagar = new JButton("Salvar Exclusão"));
         add(botoes);
+        
         // tabela de carros
         JScrollPane jSPane = new JScrollPane();
         add(jSPane);
@@ -114,17 +115,17 @@ public class CarrosPainel extends JPanel {
                     int valor = Integer.parseInt(valorText);
 
                     if (camposCadastroVazio) {
-                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida",
+                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida",
                                 2);
                     }
 
                     else if (!validarPlaca(placaText)) {
-                        JOptionPane.showMessageDialog(null, "Insira uma Placa Válida", "Informação Inválida",
+                        JOptionPane.showMessageDialog(null, "Insira uma Placa Válida!", "Informação Inválida",
                                 2);
                     }
 
                     else if (valor < 9000 || ano < 1970 && ano > 2024) {
-                        JOptionPane.showMessageDialog(null, "Insira um Ano ou Valor Válido", "Informação Inválida", 2);
+                        JOptionPane.showMessageDialog(null, "Insira um Ano ou Valor Válido!", "Informação Inválida", 2);
                     }
 
                     else {
@@ -139,10 +140,10 @@ public class CarrosPainel extends JPanel {
                         carValorField.setText("");
                     }
                 } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
+                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida", 2);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
+                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida", 2);
             }
         });
 
@@ -163,12 +164,12 @@ public class CarrosPainel extends JPanel {
                     int valor = Integer.parseInt(valorText);
 
                     if (camposCadastroVazio) {
-                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida",
+                        JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida",
                                 2);
                     }
 
                     else if (valor < 9000 || ano < 1970 && ano > 2024) {
-                        JOptionPane.showMessageDialog(null, "Insira um Ano ou Valor Válido", "Informação Inválida", 2);
+                        JOptionPane.showMessageDialog(null, "Insira um Ano ou Valor Válido!", "Informação Inválida", 2);
                     }
 
                     else {
@@ -183,10 +184,10 @@ public class CarrosPainel extends JPanel {
                         carValorField.setText("");
                     }
                 } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
+                    JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida", 2);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 2);
+                JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida", 2);
             }
 
         });
@@ -201,7 +202,7 @@ public class CarrosPainel extends JPanel {
                     || carPlacaField.getText().isEmpty();
 
             if (camposCadastroVazio) {
-                JOptionPane.showMessageDialog(null, "Não é possível dados vazios", "Informação Inválida",
+                JOptionPane.showMessageDialog(null, "Não é Possível Excluir Dados Vazios!", "Informação Inválida",
                         2);
             } else if (JOptionPane.showConfirmDialog(null, "Deseja excluir esse carro?",
                     "Excluindo Tarefa...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -235,7 +236,7 @@ public class CarrosPainel extends JPanel {
     }
 
     private boolean validarPlaca(String placa) {
-        String regex = "^[A-Z]{3}\\d{4}$"; // Expressão regular sem o hífen
+        String regex = "^[A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}$"; // Expressão regular para placa antiga
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(placa);
         return matcher.matches();
