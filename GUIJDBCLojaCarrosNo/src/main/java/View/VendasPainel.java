@@ -151,8 +151,6 @@ public class VendasPainel extends JPanel {
 
                     // Aqui você define os outros campos de acordo com as informações do carro
                     // selecionado
-                    // vendaClienteField.setText(...);
-                    // vendaDataHoraField.setText(...);
                 } else {
                     vendaMarcaField.setText("");
                     vendaModeloField.setText("");
@@ -209,7 +207,9 @@ public class VendasPainel extends JPanel {
                             JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!",
                                     "Informação Inválida",
                                     2);
-                        } else {
+                        } else if (JOptionPane.showConfirmDialog(null, "Deseja Realmente Vender Esse Carro?",
+                                "Excluindo Tarefa...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
                             operacoes.vender(vendaMarcaField.getText(), vendaModeloField.getText(),
                                     vendaValorField.getText(),
                                     vendaPlacaField.getText(), vendaClienteField.getText(),
@@ -221,6 +221,7 @@ public class VendasPainel extends JPanel {
                             vendaPlacaField.setText("");
                             vendaClienteField.setText("");
                             vendaDataHoraField.setText("");
+
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente!", "Informação Inválida",
@@ -275,6 +276,8 @@ public class VendasPainel extends JPanel {
             }
         });
 
+        
+
     }
 
     // Métodos (Atualizar Tabela)
@@ -286,7 +289,7 @@ public class VendasPainel extends JPanel {
         for (Vendas venda : vendas) {
             // Adiciona os dados de cada carro como uma nova linha na tabela Swing
             tableModel.addRow(new Object[] { venda.getMarca(), venda.getModelo(),
-                    venda.getPlaca(), venda.getCliente(), venda.getValor(), venda.getDataHora() });
+                    venda.getValor(), venda.getPlaca(), venda.getCliente(), venda.getDataHora() });
         }
     }
 

@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import main.java.Connection.CarrosDAO;
 import main.java.Connection.VendasDAO;
 import main.java.Model.Vendas;
 
@@ -46,6 +47,7 @@ public class VendasControl {
         new VendasDAO().vender(marca, modelo, valor, placa, cliente, dataHora);
         // Chama o método de cadastro no banco de dados
         atualizarTabela(); // Atualiza a tabela de exibição após o cadastro
+        new CarrosDAO().apagar(placa);
     }
 
     // Método para atualizar os dados de um venda no banco de dados
