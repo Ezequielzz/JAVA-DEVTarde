@@ -100,49 +100,52 @@ Estas são as principais funcionalidades e orientações para utilizar o painel 
 
 
 Manual de Instruções do Painel de Cadastro de Clientes:
+
 Objetivo do Painel:
 Este painel foi desenvolvido para gerenciar o cadastro de clientes. Ele permite o registro, edição e exclusão de informações sobre clientes, além de exibir esses dados em uma tabela.
 
 Interface do Painel:
-Cadastro de Clientes:
+1 - Cadastro de Clientes:
+* Insira os detalhes do cliente nos campos de texto, como nome, idade, sexo, RG e CPF.
+* Use os botões "Cadastrar", "Salvar Edição", "Salvar Exclusão" e "Atualizar" para realizar as operações necessárias.
 
-Insira os detalhes do cliente nos campos de texto, como nome, idade, sexo, RG e CPF.
-Use os botões "Cadastrar", "Salvar Edição", "Salvar Exclusão" e "Atualizar" para realizar as operações necessárias.
-Tabela de Clientes:
+2 - Tabela de Clientes:
+* Logo abaixo dos campos de entrada, há uma tabela que exibe os clientes cadastrados.
+* A tabela mostra informações como nome, idade, sexo, RG e CPF de cada cliente.
 
-Logo abaixo dos campos de entrada, há uma tabela que exibe os clientes cadastrados.
-A tabela mostra informações como nome, idade, sexo, RG e CPF de cada cliente.
-Botões:
+3 - Botões:
+* Cadastrar: Registra um novo cliente com os detalhes fornecidos nos campos de entrada.
+* Salvar Edição: Salva as alterações feitas nos dados de um cliente selecionado na tabela.
+* Salvar Exclusão: Remove o cliente selecionado na tabela após confirmar a exclusão.
+* Atualizar: Atualiza um cliente com base nos detalhes fornecidos nos campos de entrada.
 
-Cadastrar: Registra um novo cliente com os detalhes fornecidos nos campos de entrada.
-Salvar Edição: Salva as alterações feitas nos dados de um cliente selecionado na tabela.
-Salvar Exclusão: Remove o cliente selecionado na tabela após confirmar a exclusão.
-Atualizar: Atualiza um cliente com base nos detalhes fornecidos nos campos de entrada.
 Funcionalidades Específicas:
-Cadastro de Cliente:
+1 - Cadastro de Cliente:
 
-Preencha todos os campos de entrada para cadastrar um novo cliente.
-Verifique se os detalhes como nome, idade, sexo, RG e CPF estão corretos.
-Validações são realizadas para garantir que as informações sejam inseridas de acordo com os padrões definidos.
-Edição de Cliente:
+* Preencha todos os campos de entrada para cadastrar um novo cliente.
+* Verifique se os detalhes como nome, idade, sexo, RG e CPF estão corretos.
+* Validações são realizadas para garantir que as informações sejam inseridas de acordo com os padrões definidos.
 
-Selecione um cliente na tabela clicando sobre a linha correspondente.
-Edite os campos de texto conforme necessário.
-Clique no botão "Salvar Edição" para confirmar as alterações realizadas no cliente selecionado.
-Exclusão de Cliente:
+2 - Edição de Cliente:
+* Selecione um cliente na tabela clicando sobre a linha correspondente.
+* Edite os campos de texto conforme necessário.
+* Clique no botão "Salvar Edição" para confirmar as alterações realizadas no cliente selecionado.
 
-Selecione um cliente na tabela clicando sobre a linha correspondente.
-Clique no botão "Salvar Exclusão" para remover o cliente selecionado após confirmar a exclusão.
-Atualização de Cliente:
+3 - Exclusão de Cliente:
+* Selecione um cliente na tabela clicando sobre a linha correspondente.
+* Clique no botão "Salvar Exclusão" para remover o cliente selecionado após confirmar a exclusão.
 
-Utilize o botão "Atualizar" para modificar as informações de um cliente com base nos dados fornecidos nos campos de entrada.
-Validações:
+4 - Atualização de Cliente:
+* Utilize o botão "Atualizar" para modificar as informações de um cliente com base nos dados fornecidos nos campos de entrada.
 
-O sistema realiza validações para verificar se os campos obrigatórios estão preenchidos corretamente, como nome, idade, RG e CPF.
-Há validações específicas para idade mínima, tamanho do RG e formato do CPF.
+5 - Validações:
+* O sistema realiza validações para verificar se os campos obrigatórios estão preenchidos corretamente, como nome, idade, RG e CPF.
+* Há validações específicas para idade mínima, tamanho do RG e formato do CPF.
+
 Observações Importantes:
-Integridade dos Dados:
-Antes de realizar a exclusão de um cliente, confirme a ação, pois ela é irreversível.
-Preenchimento Correto:
-Certifique-se de preencher os campos corretamente para evitar erros durante o cadastro ou edição de um cliente.
+* Integridade dos Dados:
+	 * Antes de realizar a exclusão de um cliente, confirme a ação, pois ela é irreversível.
+* Preenchimento Correto:
+	* Certifique-se de preencher os campos corretamente para evitar erros durante o cadastro ou edição de um 		cliente.
+
 Estas são as principais funcionalidades e orientações para utilizar o painel de cadastro de clientes. Garanta o preenchimento correto dos dados e esteja ciente das operações realizadas, principalmente durante a exclusão de um cliente.
