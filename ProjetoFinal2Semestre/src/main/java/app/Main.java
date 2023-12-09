@@ -1,5 +1,6 @@
 package main.java.app;
 
+import main.java.Connection.ClientesDAO;
 import main.java.View.JanelaCaixa;
 
 public class Main {
