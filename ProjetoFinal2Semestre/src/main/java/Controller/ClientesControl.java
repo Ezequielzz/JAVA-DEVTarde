@@ -14,9 +14,13 @@ public class ClientesControl {
     private JTable table; // Tabela de clientes
 
     // Construtor
-    public ClientesControl(List<Clientes> clientes) {
+    public ClientesControl(List<Clientes> clientes, DefaultTableModel tableModel, JTable table) {
         this.clientes = clientes;
+        this.tableModel = tableModel;
+        this.table = table;
     }
+
+    
 
     // Método para atualizar a tabela de exibição com os dados do banco de dados
     private void atualizarTabela() {
@@ -36,18 +40,15 @@ public class ClientesControl {
     // Método para cadastrar um novo cliente no banco de dados
     public void cadastrar(String nomeCliente, String cpfCliente) {
         new ClientesDAO().cadastrar(nomeCliente, cpfCliente); // Realiza o cadastro no banco de dados
-        atualizarTabela(); // Atualiza a tabela de exibição após o cadastro
     }
 
     // Método para atualizar os dados de um cliente no banco de dados
     public void atualizar(String nomeCliente, String cpfCliente) {
         new ClientesDAO().atualizar(nomeCliente, cpfCliente); // Realiza a atualização no banco de dados
-        atualizarTabela(); // Atualiza a tabela de exibição após a atualização
     }
 
     // Método para apagar um cliente do banco de dados
     public void apagar(String cpfCliente) {
         new ClientesDAO().apagar(cpfCliente); // Remove o cliente do banco de dados
-        atualizarTabela(); // Atualiza a tabela de exibição após a exclusão
     }
 }

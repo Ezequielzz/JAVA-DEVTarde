@@ -2,8 +2,12 @@ package main.java.View;
 
 import java.util.List;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.awt.event.*;
+
+import main.java.Connection.ClientesDAO;
 import main.java.Controller.ClientesControl;
 import main.java.Model.Clientes;
 
@@ -15,6 +19,8 @@ public class CadastroVipPainel extends JPanel {
     private JLabel cpfLabel;
     private JTextField inserirCpf;
     private List<Clientes> clientes; // Lista de clientes
+    private JTable table;
+    private DefaultTableModel tableModel;
 
     public CadastroVipPainel() {
         tituloCadastro = new JLabel("Cadastro de Cliente");
@@ -65,7 +71,8 @@ public class CadastroVipPainel extends JPanel {
         gbc.gridwidth = 2;
         add(cadastroButton, gbc);
 
-        ClientesControl operacoes = new ClientesControl(); // Instância do controlador
+
+        ClientesControl operacoes = new ClientesControl(clientes, tableModel, table); // Instância do controlador
 
         cadastroButton.addActionListener(new ActionListener() {
             @Override
