@@ -18,7 +18,7 @@ public class JanelaCaixa extends JFrame {
 
         CadastroVipPainel tab2 = new CadastroVipPainel();
         jTPane.add("Cadastro VIP", tab2);
-        setBounds(100, 100, 600, 600);
+        setBounds(100, 100, 906, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
