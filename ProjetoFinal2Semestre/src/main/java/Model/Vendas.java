@@ -1,17 +1,19 @@
 package main.java.Model;
 
 public class Vendas {
-    
-    //Atributos
+
+    // Atributos
     private String produto;
+    private String codigo;
+    private String valorUnit;
     private String quantidade;
-    private String codigoProduto;
-    // private String cliente; ???
-    
-    public Vendas(String produto, String quantidade, String codigoProduto) {
+
+    // Construtor
+    public Vendas(String produto, String codigo, String valorUnit, String quantidade) {
         this.produto = produto;
+        this.codigo = codigo;
+        this.valorUnit = valorUnit;
         this.quantidade = quantidade;
-        this.codigoProduto = codigoProduto;
     }
 
     public String getProduto() {
@@ -22,6 +24,22 @@ public class Vendas {
         this.produto = produto;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getValorUnit() {
+        return valorUnit;
+    }
+
+    public void setValorUnit(String valorUnit) {
+        this.valorUnit = valorUnit;
+    }
+
     public String getQuantidade() {
         return quantidade;
     }
@@ -29,16 +47,5 @@ public class Vendas {
     public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
-
-    public String getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
-    }
-
-    
-
 
 }
