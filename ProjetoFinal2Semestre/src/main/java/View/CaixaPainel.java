@@ -47,7 +47,7 @@ public class CaixaPainel extends JPanel {
         panelLista.setLayout(new BorderLayout());
 
         tableModel = new DefaultTableModel(new Object[][] {},
-                new String[] { "Produto", "Código", "Valor Unitário", "Quantidade", "Cliente" });
+                new String[] { "Produto", "Código", "Valor Unitário", "Quantidade"});
         table = new JTable(tableModel);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
@@ -64,8 +64,7 @@ public class CaixaPainel extends JPanel {
                     String produto = (String) table.getValueAt(linhaSelecionada, 0);
                     String codigo = (String) table.getValueAt(linhaSelecionada, 1);
                     String valorUnit = (String) table.getValueAt(linhaSelecionada, 2);
-                    String quantidade = (String) table.getValueAt(linhaSelecionada, 3);
-                    String cliente = (String) table.getValueAt(linhaSelecionada, 4);                                                                
+                    String quantidade = (String) table.getValueAt(linhaSelecionada, 3);                                                           
                 }
             }
         });

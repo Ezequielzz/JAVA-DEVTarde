@@ -10,7 +10,7 @@ public class ClientesControl {
 
         // Regex para verificar se o nome contém caracteres especiais
         if (!nome.matches("^[\\p{L} .'-]+$")) {
-            throw new IllegalArgumentException("Nome Inválido! Insira um nome sem números ou caracteres especiais.");
+            JOptionPane.showMessageDialog(null, "Nome Inválido!", "Erro!", JOptionPane.ERROR_MESSAGE);
         }
 
         return true;
@@ -27,7 +27,7 @@ public class ClientesControl {
             }
 
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Nome Inválido", "Erro!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nome Inválido!", "Erro!", JOptionPane.ERROR_MESSAGE);
         }
 
     }

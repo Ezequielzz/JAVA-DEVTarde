@@ -1,19 +1,19 @@
 package main.java.Model;
 
-public class Vendas {
+public class Estoque {
 
     // Atributos
     private String produto;
     private String codigo;
     private String valorUnit;
-    private String quantidade;
+    private String equantidade;
 
     // Construtor
-    public Vendas(String produto, String codigo, String valorUnit, String quantidade) {
+    public Estoque(String produto, String codigo, String valorUnit, String equantidade) {
         this.produto = produto;
         this.codigo = codigo;
         this.valorUnit = valorUnit;
-        this.quantidade = quantidade;
+        this.equantidade = equantidade;
     }
 
     public String getProduto() {
@@ -40,12 +40,12 @@ public class Vendas {
         this.valorUnit = valorUnit;
     }
 
-    public String getQuantidade() {
-        return quantidade;
+    public String getEquantidade() {
+        return equantidade;
     }
 
-    public void setQuantidade(String quantidade) {
-        this.quantidade = quantidade;
+    public void setEquantidade(String equantidade) {
+        this.equantidade = equantidade;
     }
 
 }

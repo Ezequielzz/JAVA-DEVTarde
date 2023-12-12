@@ -20,6 +20,11 @@ public class JanelaCaixa extends JFrame {
         jTPane.add("Cadastro VIP", tab2);
         setBounds(100, 100, 906, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        EstoquePainel tab3 = new EstoquePainel();
+        jTPane.add("Estoque", tab3);
+        setBounds(100, 100, 906, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     // método para tornar a janela visível

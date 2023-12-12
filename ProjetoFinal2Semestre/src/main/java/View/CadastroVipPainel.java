@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.ParseException;
 
+import main.java.Connection.ClientesDAO;
 import main.java.Controller.ClientesControl;
 
 public class CadastroVipPainel extends JPanel {
@@ -66,7 +67,9 @@ public class CadastroVipPainel extends JPanel {
         gbc.gridwidth = 2;
         add(cadastroButton, gbc);
 
-        ClientesControl operacoes = new ClientesControl(); // Instância do controlador
+        // Criar a Tabela se ela não existir
+        new ClientesDAO().criaTabela();
+
 
         cadastroButton.addActionListener(new ActionListener() {
             @Override
@@ -79,6 +82,8 @@ public class CadastroVipPainel extends JPanel {
         });
 
     }
+
+    ClientesControl operacoes = new ClientesControl(); // Instância do controlador
 
     private MaskFormatter formatar(String mascara){
         MaskFormatter mask = null;
