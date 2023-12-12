@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
+import main.java.Connection.EstoqueDAO;
+import main.java.Model.Estoque;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,14 +35,35 @@ public class CaixaPainel extends JPanel {
 
     private JPanel criarPainelTop() {
         JPanel panelTop = new JPanel();
-        // Seu código para o painel Top aqui
+
+        JTextField campoCodigo = new JTextField(10);
+        JButton botaoAdicionar = new JButton("Adicionar");
+
+        botaoAdicionar.addActionListener(e -> {
+            String codigo = campoCodigo.getText();
+            preencherTabelaComProduto(codigo);
+        });
+
         panelTop.add(new JLabel("Código do Produto:"));
-        panelTop.add(new JTextField(10));
-        panelTop.add(new JLabel("Quantidade:"));
-        panelTop.add(new JTextField(5));
-        panelTop.add(new JButton("Adicionar"));
+        panelTop.add(campoCodigo);
+        panelTop.add(botaoAdicionar);
         panelTop.add(new JButton("Remover"));
+
         return panelTop;
+    }
+
+    private void preencherTabelaComProduto(String codigo) {
+        EstoqueDAO estoqueDAO = new EstoqueDAO();
+        Estoque produto = estoqueDAO.listarUm(codigo);
+
+        if (produto != null) {
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            Object[] rowData = { produto.getProduto(), produto.getCodigo(), produto.getValorUnit()};
+            model.addRow(rowData);
+        } else {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!", "Ação Inválida!", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private JScrollPane criarScrollPane() {
@@ -47,28 +71,12 @@ public class CaixaPainel extends JPanel {
         panelLista.setLayout(new BorderLayout());
 
         tableModel = new DefaultTableModel(new Object[][] {},
-                new String[] { "Produto", "Código", "Valor Unitário", "Quantidade"});
+                new String[] { "Produto", "Código", "Valor Unitário"});
         table = new JTable(tableModel);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
         JScrollPane scrollPane = new JScrollPane(table);
         panelLista.add(scrollPane);
-
-        // Tratamento de Eventos
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                int linhaSelecionada = table.rowAtPoint(evt.getPoint());
-                if (linhaSelecionada != -1) {
-                    // Aqui você pode realizar ações com base na linha selecionada
-                    String produto = (String) table.getValueAt(linhaSelecionada, 0);
-                    String codigo = (String) table.getValueAt(linhaSelecionada, 1);
-                    String valorUnit = (String) table.getValueAt(linhaSelecionada, 2);
-                    String quantidade = (String) table.getValueAt(linhaSelecionada, 3);                                                           
-                }
-            }
-        });
-
         return scrollPane;
     }
 
