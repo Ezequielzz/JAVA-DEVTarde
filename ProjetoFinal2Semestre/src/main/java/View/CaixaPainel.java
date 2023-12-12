@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
+import main.java.Connection.ClientesDAO;
 import main.java.Connection.EstoqueDAO;
 import main.java.Model.Estoque;
 
@@ -59,7 +60,7 @@ public class CaixaPainel extends JPanel {
         if (produto != null) {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-            Object[] rowData = { produto.getProduto(), produto.getCodigo(), produto.getValorUnit()};
+            Object[] rowData = { produto.getProduto(), produto.getCodigo(), produto.getValorUnit() };
             model.addRow(rowData);
         } else {
             JOptionPane.showMessageDialog(null, "Produto não encontrado!", "Ação Inválida!", JOptionPane.ERROR_MESSAGE);
@@ -71,7 +72,7 @@ public class CaixaPainel extends JPanel {
         panelLista.setLayout(new BorderLayout());
 
         tableModel = new DefaultTableModel(new Object[][] {},
-                new String[] { "Produto", "Código", "Valor Unitário"});
+                new String[] { "Produto", "Código", "Valor Unitário" });
         table = new JTable(tableModel);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
@@ -92,6 +93,21 @@ public class CaixaPainel extends JPanel {
 
         JButton botaoValidar = new JButton("Validar CPF");
         botaoValidar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // ActionListener para o botão "Validar CPF"
+        botaoValidar.addActionListener(e -> {
+            String cpf = campoCPF.getText();
+            if (validarCPF(cpf)) {
+                // Implemente aqui a lógica para validar o CPF
+                if (clienteExisteNoBancoDeDados(cpf)) {
+                    JOptionPane.showMessageDialog(null, "Cadastro Encontrado!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cadastro Não Encontrado!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "CPF Inválido!", "Ação Inválida!", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
         panelClienteVIP.add(Box.createVerticalStrut(20));
         panelClienteVIP.add(labelClienteVIP);
@@ -118,6 +134,17 @@ public class CaixaPainel extends JPanel {
             System.out.println("Formatacao com erro" + e);
         }
         return mask;
+    }
+
+    // Método para validar o formato do CPF
+    private boolean validarCPF(String cpf) {
+        // Verificção de CPF (Não era necessário)
+        return cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}"); // Exemplo simples de validação de formato
+    }
+
+    // Método para verificar se o cliente existe no banco de dados pelo CPF
+    private boolean clienteExisteNoBancoDeDados(String cpf) {
+        return new ClientesDAO().clienteExiste(cpf);
     }
 
 }
