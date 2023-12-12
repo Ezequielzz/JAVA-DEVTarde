@@ -71,6 +71,26 @@ public class ClientesDAO {
         return clientes; // Retorna a lista de clientes recuperados do banco de dados
     }
 
+    // Método para verificar se um cliente já está cadastrado pelo CPF
+    public boolean clienteExiste(String cpfCliente) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM clientes_mercado WHERE cpf = ?");
+            stmt.setString(1, cpfCliente);
+            rs = stmt.executeQuery();
+
+            return rs.next(); // Retorna verdadeiro se encontrar algum cliente com o CPF
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao verificar cliente no banco de dados.", e);
+        } finally {
+            ConnectionFactory.closeConnection(connection, stmt, rs);
+        }
+    }
+
     // Cadastrar Carro no banco
     public void cadastrar(String nomeCliente, String cpfCliente) {
         PreparedStatement stmt = null;
@@ -126,5 +146,3 @@ public class ClientesDAO {
     }
 
 }
-
-
