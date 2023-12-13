@@ -83,11 +83,10 @@ public class EstoqueDAO {
 
             if (rs.next()) {
                 produto = new Estoque(
-                    rs.getString("produto"),
-                    rs.getString("codigo"),
-                    rs.getString("valorunit"),
-                    rs.getString("equantidade")
-                );
+                        rs.getString("produto"),
+                        rs.getString("codigo"),
+                        rs.getString("valorunit"),
+                        rs.getString("equantidade"));
             }
         } catch (SQLException e) {
             // Tratamento de exceções
@@ -139,7 +138,6 @@ public class EstoqueDAO {
             ConnectionFactory.closeConnection(connection, stmt);
         }
     }
-    
 
     // Apagar dados do banco
     public void apagar(String codigo) {

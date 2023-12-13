@@ -6,7 +6,6 @@ import javax.swing.text.MaskFormatter;
 
 import main.java.Connection.ClientesDAO;
 import main.java.Connection.EstoqueDAO;
-import main.java.Connection.VendasDAO;
 import main.java.Controller.VendasControl;
 import main.java.Model.Estoque;
 import main.java.Model.Vendas;
@@ -22,6 +21,7 @@ public class CaixaPainel extends JPanel {
     private List<Vendas> vendas;
     private boolean clienteVIP = false;
     private JTextField campoQuantidade;
+    private JTextField campoData;
 
     public CaixaPainel() {
         // Define o layout principal como BorderLayout
@@ -44,26 +44,31 @@ public class CaixaPainel extends JPanel {
         add(panelClienteVIP, BorderLayout.EAST);
     }
 
-    // Método para criar e retornar o painel com campos de entrada para código do produto e quantidade
+    // Método para criar e retornar o painel com campos de entrada para código do
+    // produto e quantidade
     private JPanel painelTop() {
         JPanel panelTop = new JPanel();
-    
+
         JTextField campoCodigo = new JTextField(10);
         campoQuantidade = new JTextField(5);
-    
+        campoData = new JTextField(10);
+
         JButton botaoAdicionar = new JButton("Adicionar");
         JButton botaoRemover = new JButton("Remover");
-    
+
         // ActionListener para o botão "Adicionar"
         botaoAdicionar.addActionListener(e -> {
             String codigo = campoCodigo.getText();
             String quantidade = campoQuantidade.getText();
-            if (quantidade.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Adicione Uma Quantidade Válida!", "Ação Inválida!", JOptionPane.ERROR_MESSAGE);
+            String data = campoData.getText();
+
+            if (quantidade.isEmpty() || data.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha Todos os Campos!", "Ação Inválida!",
+                        JOptionPane.ERROR_MESSAGE);
             } else {
-                preencherTabela(codigo); // Chama o método para preencher a tabela com o produto    
+                preencherTabela(codigo); // Chama o método para preencher a tabela com o produto
             }
-            
+
         });
 
         botaoRemover.addActionListener(e -> {
@@ -72,48 +77,22 @@ public class CaixaPainel extends JPanel {
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 model.removeRow(selectedRow); // Remove a linha selecionada da tabela
             } else {
-                JOptionPane.showMessageDialog(null, "Selecione um item para remover!", "Ação Inválida!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Selecione um item para remover!", "Ação Inválida!",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
-        
 
-    
         panelTop.add(new JLabel("Código do Produto:"));
         panelTop.add(campoCodigo);
         panelTop.add(new JLabel("Quantidade:"));
         panelTop.add(campoQuantidade);
+        panelTop.add(new JLabel("Data:"));
+        panelTop.add(campoData);
         panelTop.add(botaoAdicionar);
         panelTop.add(botaoRemover);
-    
+
         return panelTop;
     }
-
-    
-    // Método para preencher a tabela com as informações do produto
-    private void preencherTabela(String codigo) {
-        EstoqueDAO estoqueDAO = new EstoqueDAO();
-        Estoque produto = estoqueDAO.listarUm(codigo);
-
-        if (produto != null) {
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-            // Verifica se o Cliente é Vip para aplicar o desconto
-            if (clienteVIP) {
-                double valorUnitario = Double.parseDouble(produto.getValorUnit());
-                valorUnitario *= 0.85; // Aplica o desconto de 15%
-                produto.setValorUnit(String.valueOf(valorUnitario)); // Converte de volta para String
-            }
-
-            // Adiciona os dados do produto à tabela
-            Object[] rowData = { produto.getProduto(), produto.getCodigo(), produto.getValorUnit(), campoQuantidade.getText()};
-            model.addRow(rowData);
-        } else {
-            JOptionPane.showMessageDialog(null, "Produto não encontrado!", "Ação Inválida!", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    // Instância do controlador para operações de vendas
-    private VendasControl operacoes = new VendasControl(vendas, tableModel, table);
 
     // Método para criar e retornar o JScrollPane com a tabela
     private JScrollPane scrollPane() {
@@ -121,7 +100,7 @@ public class CaixaPainel extends JPanel {
         panelLista.setLayout(new BorderLayout());
 
         tableModel = new DefaultTableModel(new Object[][] {},
-                new String[] { "Produto", "Código", "Valor Unitário", "Quantidade"});
+                new String[] { "Produto", "Código", "Valor Unitário", "Quantidade", "Data" });
         table = new JTable(tableModel);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
@@ -129,6 +108,9 @@ public class CaixaPainel extends JPanel {
         panelLista.add(scrollPane);
         return scrollPane;
     }
+
+    // Instância do controlador para operações de vendas
+    private VendasControl operacoes = new VendasControl(vendas, tableModel, table);
 
     // Método para criar e retornar o painel para entrada de CPF do cliente VIP
     private JPanel painelClienteVIP() {
@@ -172,40 +154,8 @@ public class CaixaPainel extends JPanel {
         return panelClienteVIP;
     }
 
-    // Método para calcular o total dos valores na tabela, considerando desconto VIP
-    private double valorTotal() {
-        double total = 0.0;
-        int rowCount = tableModel.getRowCount();
-    
-        for (int i = 0; i < rowCount; i++) {
-            Object value = tableModel.getValueAt(i, 2);
-            Object quantidade = tableModel.getValueAt(i, 3); // Obtém a quantidade da coluna 3 (supondo que seja a coluna da quantidade)
-    
-            if (value instanceof Double && quantidade instanceof String) {
-                double valorUnitario = (Double) value;
-                int qtde = Integer.parseInt((String) quantidade);
-    
-                total += valorUnitario * qtde;
-            } else if (value instanceof String && quantidade instanceof String) {
-                try {
-                    double valorUnitario = Double.parseDouble((String) value);
-                    int qtde = Integer.parseInt((String) quantidade);
-    
-                    total += valorUnitario * qtde;
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    
-        if (clienteVIP) {
-            total *= 0.85; // Aplica o desconto de 15%
-        }
-    
-        return total;
-    }
-    
-    // Método para criar e retornar o painel com botões, incluindo finalização da compra
+    // Método para criar e retornar o painel com botões, incluindo finalização da
+    // compra
     private JPanel painelBotoes() {
         JPanel panelBotoes = new JPanel();
         JButton botaoAvancarCompra = new JButton("Avançar Compra");
@@ -276,17 +226,86 @@ public class CaixaPainel extends JPanel {
         return new ClientesDAO().clienteExiste(cpf);
     }
 
+    // Método para calcular o total dos valores na tabela, considerando desconto VIP
+    private double valorTotal() {
+        double total = 0.0;
+        int rowCount = tableModel.getRowCount();
+
+        for (int i = 0; i < rowCount; i++) {
+            Object value = tableModel.getValueAt(i, 2);
+            Object quantidade = tableModel.getValueAt(i, 3); // Obtém a quantidade da coluna 3 (supondo que seja a
+                                                             // coluna da quantidade)
+
+            if (value instanceof Double && quantidade instanceof String) {
+                double valorUnitario = (Double) value;
+                int qtde = Integer.parseInt((String) quantidade);
+
+                total += valorUnitario * qtde;
+            } else if (value instanceof String && quantidade instanceof String) {
+                try {
+                    double valorUnitario = Double.parseDouble((String) value);
+                    int qtde = Integer.parseInt((String) quantidade);
+
+                    total += valorUnitario * qtde;
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (clienteVIP) {
+            total *= 0.85; // Aplica o desconto de 15%
+        }
+
+        return total;
+    }
+
+    // Método para preencher a tabela com as informações do produto
+    private void preencherTabela(String codigo) {
+        EstoqueDAO estoqueDAO = new EstoqueDAO();
+        Estoque produto = estoqueDAO.listarUm(codigo);
+
+        if (produto != null) {
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            // Verifica se o Cliente é Vip para aplicar o desconto
+            if (clienteVIP) {
+                double valorUnitario = Double.parseDouble(produto.getValorUnit());
+                valorUnitario *= 0.85; // Aplica o desconto de 15%
+                produto.setValorUnit(String.valueOf(valorUnitario)); // Converte de volta para String
+            }
+
+            // Adiciona os dados do produto à tabela
+            Object[] rowData = { produto.getProduto(), produto.getCodigo(), produto.getValorUnit(),
+                    campoQuantidade.getText(), campoData.getText() };
+            model.addRow(rowData);
+        } else {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!", "Ação Inválida!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     // Método para enviar dados da tabela para o banco de dados
     private void enviarDadosParaBanco() {
         int rowCount = tableModel.getRowCount();
+        EstoqueDAO estoqueDAO = new EstoqueDAO();
 
         for (int i = 0; i < rowCount; i++) {
             String produto = (String) tableModel.getValueAt(i, 0);
             String codigo = (String) tableModel.getValueAt(i, 1);
             String valorUnit = (String) tableModel.getValueAt(i, 2);
             String quantidade = (String) tableModel.getValueAt(i, 3);
+            String data = (String) tableModel.getValueAt(i, 4);
 
-            operacoes.cadastrar(produto, codigo, valorUnit, quantidade);
+            operacoes.cadastrar(produto, codigo, valorUnit, quantidade, data);
+
+            // Atualiza a quantidade no estoque subtraindo a quantidade vendida
+            Estoque estoqueProduto = estoqueDAO.listarUm(codigo);
+            int quantidadeDisponivel = Integer.parseInt(estoqueProduto.getEquantidade());
+            int quantidadeVendida = Integer.parseInt(quantidade);
+            int novaQuantidade = quantidadeDisponivel - quantidadeVendida;
+
+            // Atualiza a quantidade disponível no estoque após a venda
+            estoqueDAO.atualizar(produto, codigo, valorUnit, Integer.toString(novaQuantidade));
         }
     }
 

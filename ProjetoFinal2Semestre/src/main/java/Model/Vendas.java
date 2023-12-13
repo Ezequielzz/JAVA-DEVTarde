@@ -6,13 +6,15 @@ public class Vendas {
         private String codigo;
         private String valorUnit;
         private String quantidade;
+        private String data;
     
         // Construtor
-        public Vendas(String produto, String codigo, String valorUnit, String quantidade) {
+        public Vendas(String produto, String codigo, String valorUnit, String quantidade, String data) {
             this.produto = produto;
             this.codigo = codigo;
             this.valorUnit = valorUnit;
             this.quantidade = quantidade;
+            this.data = data;
         }
     
         public String getProduto() {
@@ -45,6 +47,14 @@ public class Vendas {
     
         public void setQuantidade(String quantidade) {
             this.quantidade = quantidade;
+        }
+
+        public String getData() {
+            return data;
+        }
+    
+        public void setData(String data) {
+            this.data = data;
         }
      
 }

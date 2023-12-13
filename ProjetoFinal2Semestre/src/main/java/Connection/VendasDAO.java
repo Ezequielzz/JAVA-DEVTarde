@@ -23,7 +23,7 @@ public class VendasDAO {
     // Métodos do CRUD
     // criar Tabela
     public void criaTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS vendas_mercado (PRODUTO VARCHAR(255), CODIGO VARCHAR(255), VALORUNIT VARCHAR(255), QUANTIDADE VARCHAR(255))";
+        String sql = "CREATE TABLE IF NOT EXISTS vendas_mercado (PRODUTO VARCHAR(255), CODIGO VARCHAR(255), VALORUNIT VARCHAR(255), QUANTIDADE VARCHAR(255), DATA VARCHAR(255))";
 
         try (Statement stmt = this.connection.createStatement()) {
             stmt.execute(sql);
@@ -57,7 +57,8 @@ public class VendasDAO {
                         rs.getString("produto"),
                         rs.getString("codigo"),
                         rs.getString("valorUnit"),
-                        rs.getString("quantidade"));
+                        rs.getString("quantidade"),
+                        rs.getString("data"));
                 vendas.add(venda); // Adiciona o objeto vendas à lista de vendas
             }
         } catch (SQLException ex) {
@@ -71,16 +72,17 @@ public class VendasDAO {
     }
 
     // Cadastrar Carro no banco
-    public void cadastrar(String produto, String codigo, String valorUnit, String quantidade) {
+    public void cadastrar(String produto, String codigo, String valorUnit, String quantidade, String data) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para cadastrar na tabela
-        String sql = "INSERT INTO vendas_mercado (produto, codigo, valorUnit, quantidade) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO vendas_mercado (produto, codigo, valorUnit, quantidade, data) VALUES (?, ?, ?, ?, ?)";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, produto);
             stmt.setString(2, codigo);
             stmt.setString(3, valorUnit);
             stmt.setString(4, quantidade);
+            stmt.setString(5, data);
             stmt.executeUpdate();
             System.out.println("Dados inseridos com sucesso");
 
@@ -92,16 +94,17 @@ public class VendasDAO {
     }
 
     // Atualizar dados no banco
-    public void atualizar(String produto, String codigo, String valorUnit, String quantidade) {
+    public void atualizar(String produto, String codigo, String valorUnit, String quantidade, String data) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para atualizar dados pelo código
-        String sql = "UPDATE vendas_mercado SET produto = ?, codigo = ?, valorUnit = ? quantidade = ?";
+        String sql = "UPDATE vendas_mercado SET produto = ?, codigo = ?, valorUnit = ?, quantidade = ? data = ?";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, produto);
             stmt.setString(2, codigo);
             stmt.setString(3, valorUnit);
             stmt.setString(4, quantidade);
+            stmt.setString(5, data);
             stmt.executeUpdate();
             System.out.println("Dados atualizados com sucesso");
         } catch (SQLException e) {

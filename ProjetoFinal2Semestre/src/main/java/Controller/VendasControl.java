@@ -34,22 +34,22 @@ public class VendasControl {
                 JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 1);
             } else {
                 // Adiciona os dados de cada venda como uma nova linha na tabela Swing
-                tableModel.addRow(new Object[] { venda.getProduto(), venda.getCodigo(), venda.getValorUnit(), venda.getQuantidade() });
+                tableModel.addRow(new Object[] { venda.getProduto(), venda.getCodigo(), venda.getValorUnit(), venda.getQuantidade(), venda.getData() });
             }
 
         }
     }
 
     // Método para cadastrar um novo venda no banco de dados
-    public void cadastrar(String produto, String codigo, String valorUnit, String quantidade) {
-        new VendasDAO().cadastrar(produto, codigo, valorUnit, quantidade);
+    public void cadastrar(String produto, String codigo, String valorUnit, String quantidade, String data) {
+        new VendasDAO().cadastrar(produto, codigo, valorUnit, quantidade, data);
         // Chama o método de cadastro no banco de dados
         atualizarTabela(); // Atualiza a tabela de exibição após o cadastro
     }
 
     // Método para atualizar os dados de um venda no banco de dados
-    public void atualizar(String produto, String codigo, String valorUnit, String quantidade) {
-        new VendasDAO().atualizar(produto, codigo, valorUnit, quantidade);
+    public void atualizar(String produto, String codigo, String valorUnit, String quantidade, String data) {
+        new VendasDAO().atualizar(produto, codigo, valorUnit, quantidade, data);
         // Chama o método de atualização no banco de dados
         atualizarTabela(); // Atualiza a tabela de exibição após a atualização
     }

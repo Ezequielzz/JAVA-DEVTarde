@@ -23,7 +23,7 @@ public class CadastroVipPainel extends JPanel {
         nomeLabel = new JLabel("Nome:");
         inserirNome = new JTextField(15);
         cpfLabel = new JLabel("CPF:");
-        inserirCpf = new JFormattedTextField(formatar ("###.###.###-##"));
+        inserirCpf = new JFormattedTextField(formatar("###.###.###-##"));
         cadastroButton = new JButton("Cadastrar");
 
         cadastroButton.setPreferredSize(new Dimension(100, 40));
@@ -70,14 +70,21 @@ public class CadastroVipPainel extends JPanel {
         // Criar a Tabela se ela não existir
         new ClientesDAO().criaTabela();
 
-
         cadastroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                operacoes.cadastrar(inserirNome.getText(), inserirCpf.getText());
+                String cpf = inserirCpf.getText();
+                String nome = inserirNome.getText();
 
-                inserirNome.setText("");
-                inserirCpf.setText("");
+                if (cpf.isEmpty() || nome.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Campos Vazios!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    operacoes.cadastrar(inserirNome.getText(), inserirCpf.getText());
+
+                    inserirNome.setText("");
+                    inserirCpf.setText("");
+                }
+
             }
         });
 
@@ -85,12 +92,12 @@ public class CadastroVipPainel extends JPanel {
 
     ClientesControl operacoes = new ClientesControl(); // Instância do controlador
 
-    private MaskFormatter formatar(String mascara){
+    private MaskFormatter formatar(String mascara) {
         MaskFormatter mask = null;
-        try{
+        try {
             mask = new MaskFormatter(mascara);
-        }catch(ParseException e){
-            System.out.println("Formatacao com erro"+ e);
+        } catch (ParseException e) {
+            System.out.println("Formatacao com erro" + e);
         }
         return mask;
     }
