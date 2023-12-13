@@ -153,4 +153,18 @@ Claro, aqui está uma documentação explicando a estrutura e a lógica de funci
 - **Conexão com Banco de Dados**: Usa `PreparedStatement` para consultas parametrizadas e previne contra injeção de SQL.
 - **Separação de Responsabilidades**: As classes são organizadas para separar a lógica da interface (`View`) da lógica de acesso ao banco de dados (`Connection`) e controle (`Controller`).
 
-Esta é uma visão geral da estrutura, funcionamento e escolhas de implementação do código fornecido.
+-----------------------------------------------------------------------------------------
+
+#### MELHORIAS A SE FAZER ####
+
+**Visão Sistemica (Parcial)**
+
+*Visão sistêmica sobre alguns detalhes*
+
+**Atualização do Estoque (Não Feito)**
+
+*Quantidade de produtos no Estoque não é reduzida após compras*
+
+**Registro das Vendas (Parcial)**
+
+*Capacidade de registrar as Vendas (Data, Hora, Valor, Quantidade de Itens, Cliente VIP e etc) - Não era necessário cadastrar item p/ item no Banco(Crítico)*
