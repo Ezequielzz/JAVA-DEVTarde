@@ -37,14 +37,13 @@ public class EstoqueControl {
     }
 
     boolean validarValorProduto(String valorProduto) {
-        if (!valorProduto.matches("\\d{1,4}(\\,\\d{2})?")) {
+        if (!valorProduto.matches("\\d{1,4}(\\.\\d{2})?")) {
             JOptionPane.showMessageDialog(null, "Valor Inválido! Insira um Valor Válido", "Erro!",
                     JOptionPane.ERROR_MESSAGE);
             return false; // Retorna false se a validação for incorreta
         }
         return true;
     }
-    
 
 
     // Método para atualizar a tabela de exibição com dados do banco de dados

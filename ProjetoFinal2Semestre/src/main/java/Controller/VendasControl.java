@@ -30,14 +30,11 @@ public class VendasControl {
         for (Vendas venda : vendas) {
 
             if (venda.getProduto().equals("") && venda.getCodigo().equals("")
-                    && venda.getValorUnit().equals("")
-                    && venda.getQuantidade().equals("")) {
+                    && venda.getValorUnit().equals("")) {
                 JOptionPane.showMessageDialog(null, "Preencha os Campos Corretamente", "Informação Inválida", 1);
             } else {
                 // Adiciona os dados de cada venda como uma nova linha na tabela Swing
-                tableModel.addRow(new Object[] { venda.getProduto(), venda.getCodigo(),
-
-                        venda.getValorUnit(), venda.getQuantidade() });
+                tableModel.addRow(new Object[] { venda.getProduto(), venda.getCodigo(), venda.getValorUnit(), venda.getQuantidade() });
             }
 
         }

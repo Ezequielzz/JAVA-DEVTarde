@@ -52,7 +52,7 @@ public class EstoquePainel extends JPanel {
         botoes.add(apagar = new JButton("Salvar Exclusão"));
         botoes.add(atualizar = new JButton("Atualizar"));
         add(botoes);
-        // tabela de carros
+        // tabela de Estoque
         JScrollPane jSPane = new JScrollPane();
         add(jSPane);
         tableModel = new DefaultTableModel(new Object[][] {},
