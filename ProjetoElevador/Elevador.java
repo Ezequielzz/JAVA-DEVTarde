@@ -25,15 +25,11 @@ public class Elevador extends JFrame {
     private int andarAtualE1;
     private int andarAtualE2;
 
-    private ImageIcon imagemIconOriginal = new ImageIcon(Elevador.class.getResource("/resource/elevadorIcon.png"));
+    private ImageIcon imagemIconFechado = new ImageIcon(Elevador.class.getResource("/resource/elevadorIcon.png"));
     private ImageIcon imagemIconAberto = new ImageIcon(Elevador.class.getResource("/resource/elevadorIcon2.png"));
 
-    // Método para redimensionar a imagem
-    private ImageIcon redimensionarImagem(int largura, int altura) {
-        Image imagemOriginal = imagemIconOriginal.getImage();
-        Image imagemRedimensionada = imagemOriginal.getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
-        return new ImageIcon(imagemRedimensionada);
-    }
+    private JLabel iconElevadorE1 = new JLabel(imagemIconFechado);
+    private JLabel iconElevadorE2 = new JLabel(imagemIconFechado);
 
     public Elevador() {
         // Painel Geral com BorderLayout
@@ -150,6 +146,7 @@ public class Elevador extends JFrame {
                             labelAndarEsquerda4.setText("E1 Andar 4");
                             labelAndarEsquerda5.setText("E1 Andar 5");
                             labelAndarEsquerda6.setText("E1 Andar 6");
+
                         } else {
                             andarAtualE2 = 2;
 
@@ -309,12 +306,12 @@ public class Elevador extends JFrame {
                     }
                 }
             });
-            JLabel elevadorIconE1 = new JLabel(redimensionarImagem(70, 70));
-            painelElevadores.add(elevadorIconE1);
+            JLabel iconElevadorE1 = new JLabel(imagemIconFechado);
+            painelElevadores.add(iconElevadorE1);
             painelElevadores.add(botao);
 
-            JLabel elevadorIconE2 = new JLabel(redimensionarImagem(70, 70));
-            painelElevadores.add(elevadorIconE2);
+            JLabel iconElevadorE2 = new JLabel(imagemIconFechado);
+            painelElevadores.add(iconElevadorE2);
         }
 
         // Adiciona os painéis à esquerda e à direita ao Painel Principal
@@ -326,12 +323,33 @@ public class Elevador extends JFrame {
         add(painelGeral);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
     }
 
     // método para calcular a distância dos elevadores
     private int calcularDistancia(int andarAtual, int andarChamado) {
+        boolean elevadorAbertoTemp = false;
+
+        // Modifica a variável temporária
+        if (andarAtual == andarChamado) {
+            elevadorAbertoTemp = true;
+        }
+
+        // Chama o método para atualizar a imagem do elevador com a variável temporária
+        atualizarImagemElevador(elevadorAbertoTemp);
+
         return Math.abs(andarAtual - andarChamado);
+    }
+
+    // Método para atualizar a imagem do ícone com base na variável fornecida
+    private void atualizarImagemElevador(boolean elevadorAbertoTemp) {
+        if (elevadorAbertoTemp) {
+            iconElevadorE1.setIcon(imagemIconAberto);
+            iconElevadorE2.setIcon(imagemIconAberto);
+        } else {
+            iconElevadorE1.setIcon(imagemIconFechado);
+            iconElevadorE2.setIcon(imagemIconFechado);
+        }
     }
 
     // método para rodar o código
