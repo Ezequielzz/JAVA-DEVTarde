@@ -26,8 +26,7 @@ public class Elevador extends JFrame {
     private int andarAtualE2;
 
     private ImageIcon imagemIconOriginal = new ImageIcon(Elevador.class.getResource("/resource/elevadorIcon.png"));
-    // private ImageIcon imagemIconOriginal2 = new
-    // ImageIcon(Elevador.class.getResource("/resource/elevadorIcon2.png"));
+    private ImageIcon imagemIconAberto = new ImageIcon(Elevador.class.getResource("/resource/elevadorIcon2.png"));
 
     // Método para redimensionar a imagem
     private ImageIcon redimensionarImagem(int largura, int altura) {
@@ -99,12 +98,10 @@ public class Elevador extends JFrame {
         // ícones de elevadores e botões
         for (int i = 7; i >= 0; i--) {
             final int buttonIndex = i; // cópia final de i
-            JLabel elevadorIconE1 = new JLabel(redimensionarImagem(70, 70));
-            painelElevadores.add(elevadorIconE1);
 
             JButton botao = new JButton("Botão " + (i + 1));
 
-            // ActionListener ao botão
+            // tratamento de evento do botão
             botao.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -127,6 +124,7 @@ public class Elevador extends JFrame {
                             labelAndarEsquerda4.setText("E1 Andar 4");
                             labelAndarEsquerda5.setText("E1 Andar 5");
                             labelAndarEsquerda6.setText("E1 Andar 6");
+
                         } else {
                             andarAtualE2 = 1;
 
@@ -236,9 +234,83 @@ public class Elevador extends JFrame {
                             labelAndarDireita5.setText("E2 Andar 5");
                             labelAndarDireita6.setText("E2 Andar 6");
                         }
+                    } else if (buttonIndex + 1 == 6) {
+                        if (distanciaE1 < distanciaE2) {
+                            andarAtualE1 = 6;
+
+                            labelAndarEsquerdaS2.setText("E1 Andar S2");
+                            labelAndarEsquerdaS1.setText("E1 Andar S1");
+                            labelAndarEsquerda1.setText("E1 Andar 1");
+                            labelAndarEsquerda2.setText("E1 Andar 2");
+                            labelAndarEsquerda3.setText("E1 Andar 3");
+                            labelAndarEsquerda4.setText("E1 Andar 4 - Elevador Aberto");
+                            labelAndarEsquerda5.setText("E1 Andar 5");
+                            labelAndarEsquerda6.setText("E1 Andar 6");
+                        } else {
+                            andarAtualE2 = 6;
+
+                            labelAndarDireitaS2.setText("E2 Andar S2");
+                            labelAndarDireitaS1.setText("E2 Andar S1");
+                            labelAndarDireita1.setText("E2 Andar 1");
+                            labelAndarDireita2.setText("E2 Andar 2");
+                            labelAndarDireita3.setText("E2 Andar 3");
+                            labelAndarDireita4.setText("E2 Andar 4 - Elevador Aberto");
+                            labelAndarDireita5.setText("E2 Andar 5");
+                            labelAndarDireita6.setText("E2 Andar 6");
+                        }
+                    } else if (buttonIndex + 1 == 7) {
+                        if (distanciaE1 < distanciaE2) {
+                            andarAtualE1 = 7;
+
+                            labelAndarEsquerdaS2.setText("E1 Andar S2");
+                            labelAndarEsquerdaS1.setText("E1 Andar S1");
+                            labelAndarEsquerda1.setText("E1 Andar 1");
+                            labelAndarEsquerda2.setText("E1 Andar 2");
+                            labelAndarEsquerda3.setText("E1 Andar 3");
+                            labelAndarEsquerda4.setText("E1 Andar 4");
+                            labelAndarEsquerda5.setText("E1 Andar 5 - Elevador Aberto");
+                            labelAndarEsquerda6.setText("E1 Andar 6");
+                        } else {
+                            andarAtualE2 = 7;
+
+                            labelAndarDireitaS2.setText("E2 Andar S2");
+                            labelAndarDireitaS1.setText("E2 Andar S1");
+                            labelAndarDireita1.setText("E2 Andar 1");
+                            labelAndarDireita2.setText("E2 Andar 2");
+                            labelAndarDireita3.setText("E2 Andar 3");
+                            labelAndarDireita4.setText("E2 Andar 4");
+                            labelAndarDireita5.setText("E2 Andar 5 - Elevador Aberto");
+                            labelAndarDireita6.setText("E2 Andar 6");
+                        }
+                    } else if (buttonIndex + 1 == 8) {
+                        if (distanciaE1 < distanciaE2) {
+                            andarAtualE1 = 8;
+
+                            labelAndarEsquerdaS2.setText("E1 Andar S2");
+                            labelAndarEsquerdaS1.setText("E1 Andar S1");
+                            labelAndarEsquerda1.setText("E1 Andar 1");
+                            labelAndarEsquerda2.setText("E1 Andar 2");
+                            labelAndarEsquerda3.setText("E1 Andar 3");
+                            labelAndarEsquerda4.setText("E1 Andar 4");
+                            labelAndarEsquerda5.setText("E1 Andar 5");
+                            labelAndarEsquerda6.setText("E1 Andar 6 - Elevador Aberto");
+                        } else {
+                            andarAtualE2 = 8;
+
+                            labelAndarDireitaS2.setText("E2 Andar S2");
+                            labelAndarDireitaS1.setText("E2 Andar S1");
+                            labelAndarDireita1.setText("E2 Andar 1");
+                            labelAndarDireita2.setText("E2 Andar 2");
+                            labelAndarDireita3.setText("E2 Andar 3");
+                            labelAndarDireita4.setText("E2 Andar 4");
+                            labelAndarDireita5.setText("E2 Andar 5");
+                            labelAndarDireita6.setText("E2 Andar 6 - Elevador Aberto");
+                        }
                     }
                 }
             });
+            JLabel elevadorIconE1 = new JLabel(redimensionarImagem(70, 70));
+            painelElevadores.add(elevadorIconE1);
             painelElevadores.add(botao);
 
             JLabel elevadorIconE2 = new JLabel(redimensionarImagem(70, 70));
@@ -254,17 +326,15 @@ public class Elevador extends JFrame {
         add(painelGeral);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 
     private int calcularDistancia(int andarAtual, int andarChamado) {
         return Math.abs(andarAtual - andarChamado);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Elevador elevador = new Elevador();
-            elevador.setSize(1200, 300); // Ajuste o tamanho da janela conforme necessário
-            elevador.setVisible(true);
-        });
+    public void run() {
+        this.setSize(1200, 300);
+        this.setVisible(true);
     }
 }
