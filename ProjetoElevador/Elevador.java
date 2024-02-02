@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class Elevador extends JFrame {
 
-    // Labels para o Elevador1
+    // Labels para o E1 e E2
     private JLabel labelAndarEsquerdaS2;
     private JLabel labelAndarEsquerdaS1;
     private JLabel labelAndarEsquerda1;
@@ -97,7 +97,7 @@ public class Elevador extends JFrame {
 
         // ícones de elevadores e botões
         for (int i = 7; i >= 0; i--) {
-            final int buttonIndex = i; // cópia final de i
+            final int buttonIndex = i;
 
             JButton botao = new JButton("Botão " + (i + 1));
 
@@ -329,10 +329,12 @@ public class Elevador extends JFrame {
         
     }
 
+    // método para calcular a distância dos elevadores
     private int calcularDistancia(int andarAtual, int andarChamado) {
         return Math.abs(andarAtual - andarChamado);
     }
 
+    // método para rodar o código
     public void run() {
         this.setSize(1200, 300);
         this.setVisible(true);
